@@ -1,4 +1,4 @@
-# wikichaves.com/music
+# wikichaves.com
 
 A quiet catalog site. Static HTML + audio assets. No build step.
 
