@@ -3,14 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wiki Chaves</title>
+<title>Wiki Chaves — Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0e0e0c;
-    --bg-2: #14140f;
     --ink: #ece8de;
     --ink-dim: #a8a295;
     --ink-faint: #6a6558;
@@ -35,10 +34,10 @@
     color: var(--ink-dim);
     display: flex; align-items: center; gap: 10px;
   }
+  .mark a { color: var(--ink-dim); text-decoration: none; display: flex; align-items: center; gap: 10px; }
   .mark .dot {
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--accent);
-    display: inline-block;
   }
   main {
     flex: 1;
@@ -46,10 +45,7 @@
     place-items: center;
     padding: 48px;
   }
-  .intro {
-    max-width: 640px;
-    text-align: left;
-  }
+  .intro { max-width: 640px; }
   .eyebrow {
     font-family: var(--mono);
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -98,15 +94,15 @@
 </style>
 </head>
 <body>
-  <header class="mark"><span class="dot"></span> Wiki Chaves</header>
+  <header class="mark"><a href="/"><span class="dot"></span> Wiki Chaves · Design</a></header>
 
   <main>
     <div class="intro">
-      <div class="eyebrow">Placeholder · home</div>
-      <h1>Designer &amp; musician, <em>living slowly in Uruguay.</em></h1>
-      <p>I make instrumental records and design software — usually in quiet rooms, near the coast, with a cup of coffee in hand.</p>
+      <div class="eyebrow">Placeholder · design</div>
+      <h1>A portfolio, <em>currently being pressed.</em></h1>
+      <p>Case studies, product work, and design explorations will live here soon. In the meantime, you can listen to the records.</p>
       <div class="links">
-        <a href="/design">Design</a>
+        <a href="/">Home</a>
         <a href="/music">Music</a>
       </div>
     </div>
