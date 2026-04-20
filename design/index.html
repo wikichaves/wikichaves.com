@@ -1,12 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiki Chaves — Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0e0e0c;
@@ -14,7 +14,8 @@
     --ink-dim: #a8a295;
     --ink-faint: #6a6558;
     --rule: #26241f;
-    --accent: #d98b5f;
+    --rule-2: #3a362e;
+    --accent: #8aa687;
     --serif: "Source Serif 4", Georgia, serif;
     --mono: "JetBrains Mono", ui-monospace, monospace;
     --sans: -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif;
@@ -32,9 +33,8 @@
     font-family: var(--mono);
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--ink-dim);
-    display: flex; align-items: center; gap: 10px;
   }
-  .mark a { color: var(--ink-dim); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .mark a { color: var(--ink-dim); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
   .mark .dot {
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--accent);
@@ -43,71 +43,179 @@
     flex: 1;
     display: grid;
     place-items: center;
-    padding: 48px;
+    padding: 48px 48px 96px;
   }
-  .intro { max-width: 640px; }
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
-  }
+  .intro { max-width: 760px; width: 100%; }
   h1 {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(44px, 6vw, 84px);
-    line-height: 1.05;
-    letter-spacing: -0.015em;
-    margin: 0 0 40px;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 48px;
+  }
+  p.lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.6;
+    color: var(--ink-dim);
+    margin: 0 0 24px;
+    max-width: 620px;
     text-wrap: pretty;
   }
-  h1 em { font-style: italic; color: var(--ink-dim); }
-  p {
-    font-family: var(--serif);
-    font-size: 20px; line-height: 1.65;
-    color: var(--ink-dim);
-    margin: 0 0 32px;
-    max-width: 520px;
+  details.more {
+    max-width: 620px;
+    margin: 0 0 64px;
   }
-  .links {
-    display: flex; gap: 28px;
+  details.more summary {
+    list-style: none;
+    cursor: pointer;
     font-family: var(--mono);
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    margin-top: 48px;
+    color: var(--accent);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule-2);
+    display: inline-block;
+    transition: border-color .25s, color .25s;
+  }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary:hover { border-bottom-color: var(--accent); }
+  details.more summary .close { display: none; }
+  details.more[open] summary .open { display: none; }
+  details.more[open] summary .close { display: inline; }
+  details.more summary::after { content: "  ↓"; color: var(--ink-faint); }
+  details.more[open] summary::after { content: "  ↑"; }
+  .more-body {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    animation: fade .4s ease;
+  }
+  .more-body p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .more-body p em { color: var(--ink); font-style: italic; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 24px;
+  }
+  .logos {
+    display: flex; flex-wrap: wrap;
+    gap: 40px 56px;
+    align-items: center;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 64px;
+  }
+  .logos .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink);
+    opacity: 0.85;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+  }
+  .logos svg { display: block; }
+  .links {
+    display: flex; flex-wrap: wrap; gap: 28px;
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
   }
   .links a {
     color: var(--ink);
     text-decoration: none;
     padding-bottom: 6px;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule-2);
     transition: border-color .25s, color .25s;
   }
   .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-  .links a::after { content: " →"; color: var(--ink-faint); transition: color .25s; }
+  .links a::after { content: " ↗"; color: var(--ink-faint); transition: color .25s; margin-left: 4px; }
   .links a:hover::after { color: var(--accent); }
   footer {
     padding: 32px 48px;
     font-family: var(--mono);
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--ink-faint);
+    display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  footer nav a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-left: 24px;
+    transition: color .2s;
+  }
+  footer nav a:hover { color: var(--accent); }
+  @media (max-width: 640px) {
+    .mark, main, footer { padding-left: 24px; padding-right: 24px; }
+    .logos { gap: 28px 36px; }
   }
 </style>
 </head>
-<body>
-  <header class="mark"><a href="/"><span class="dot"></span> Wiki Chaves · Design</a></header>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
+  <header class="mark"><a href="/"><span class="dot"></span> Wiki Chaves</a></header>
 
   <main>
     <div class="intro">
-      <div class="eyebrow">Placeholder · design</div>
-      <h1>A portfolio, <em>currently being pressed.</em></h1>
-      <p>Case studies, product work, and design explorations will live here soon. In the meantime, you can listen to the records.</p>
+      <h1 data-cc-id="cc-2" style="">Product Designer</h1>
+      <p class="lede" data-cc-id="cc-3" style="">
+        With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies such as Netflix, Airbnb, and Meta. My passion lies in transforming concepts into tangible, impactful products.
+      </p>
+
+      <details class="more">
+        <summary><span class="open">Read more</span><span class="close">Read less</span></summary>
+        <div class="more-body">
+          <p>I designed my first website in 1996, a fan page I built a few weeks after my father first showed me the internet. I was 16. After high school I studied Image and Sound Design at the University of Buenos Aires.</p>
+          <p>My first job was as the audiovisual guy at a school — connecting TVs, projectors and sound systems — while also designing and building the school's website. In my free time I took on freelance work for friends and family who wanted an online presence.</p>
+          <p>In 2006 I joined Lenovo's local branch in Buenos Aires. It was my first leadership role, running a team of six designers producing homepage graphics, banners, and email marketing for internal clients across the US, Canada, and Latin America.</p>
+          <p>Through the rest of the 2000s I worked as an Art Director at several design agencies, designing and often coordinating production of campaign-oriented websites for brands like Hewlett Packard, Procter &amp; Gamble, Volkswagen, and Intel.</p>
+          <p>In early 2011 I started looking for jobs outside Argentina and found an ad for a position at Wences Casares' next startup in Palo Alto. Several interviews and two design exercises later, I got the job. I packed my things and moved to California to start <em>Lemon Wallet</em> — living the full startup cycle over two and a half years: core product, brand, launch, pivot, product-market fit, revenue, and acquisition in December 2013.</p>
+          <p>In 2014 I joined <em>Xapo</em> as Head of Design, leading both product and marketing. The challenge was huge — building a product on top of bitcoin, an emerging technology, and communicating it to the market. In just a few months we positioned Xapo as the most secure bitcoin wallet in the world.</p>
+          <p>In 2015 I partnered with Aerolab, one of the best product design agencies in Argentina, to open an office in San Francisco. I looked for new leads in the Bay Area and worked with our team in Buenos Aires to deliver.</p>
+          <p>In 2016 I started at <em>Airbnb</em>, on the Search/Decide team. Our goal was to help guests make better decisions when booking a home — I worked on listing cards redesign, product detail page optimization, and urgency and commitment messages.</p>
+          <p>In 2020 I joined <em>Netflix</em> on the Design System team, mostly creating, extending, and maintaining components for Hawkins Professional, the design system used to build internal tools at Netflix.</p>
+          <p>Today I'm working independently — open to contract and freelance projects in Product Design, Design Systems, and Product Marketing.</p>
+        </div>
+      </details>
+
+      <div class="section-label">Selected experience</div>
+      <div class="logos">
+        <span class="logo">Xapo Bank</span>
+        <span class="logo">Airbnb</span>
+        <span class="logo">Netflix</span>
+        <span class="logo">Meta</span>
+      </div>
+
+      <div class="section-label">Elsewhere</div>
       <div class="links">
-        <a href="/">Home</a>
-        <a href="/music">Music</a>
+        <a href="https://www.linkedin.com/in/wikichaves/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/wikichaves" target="_blank" rel="noopener">X</a>
+        <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
       </div>
     </div>
   </main>
 
-  <footer>© Wiki Chaves · Made slowly in Uruguay</footer>
-</body>
-</html>
+  <footer>
+    <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/music">Music</a>
+    </nav>
+  </footer>
+
+
+</body></html>
