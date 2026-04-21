@@ -1,120 +1,71 @@
-<!DOCTYPE html><html lang="en"><head>
-
-
-
-
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiki Chaves</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-  :root {
-    --bg: #0e0e0c;
-    --bg-2: #14140f;
-    --ink: #ece8de;
-    --ink-dim: #a8a295;
-    --ink-faint: #6a6558;
-    --rule: #26241f;
-    --accent: #8aa687;
-    --serif: "Source Serif 4", Georgia, serif;
-    --mono: "JetBrains Mono", ui-monospace, monospace;
-    --sans: -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif;
+  .hero {
+    padding: clamp(80px, 14vh, 160px) 0 clamp(64px, 10vh, 120px);
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
-  body {
-    font-family: var(--sans);
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    -webkit-font-smoothing: antialiased;
+  .hero .display {
+    margin-bottom: 40px;
+    max-width: 12ch;
   }
-  .mark {
-    padding: 32px 48px;
-    font-family: var(--mono);
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-dim);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .mark .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--accent);
-    display: inline-block;
-  }
-  main {
-    flex: 1;
-    display: grid;
-    place-items: center;
-    padding: 48px;
-  }
-  .intro {
-    max-width: 640px;
-    text-align: left;
-  }
+  .hero .display em { color: var(--ink-dim); font-style: italic; }
+  .hero .lede { margin-bottom: 56px; max-width: 520px; }
+  .hero .link-list { margin-top: 8px; }
   .eyebrow {
     font-family: var(--mono);
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
-  }
-  h1 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(44px, 6vw, 84px);
-    line-height: 1.05;
-    letter-spacing: -0.015em;
-    margin: 0 0 40px;
-    text-wrap: pretty;
-  }
-  h1 em { font-style: italic; color: var(--ink-dim); }
-  p {
-    font-family: var(--serif);
-    font-size: 20px; line-height: 1.65;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--ink-dim);
-    margin: 0 0 32px;
-    max-width: 520px;
+    margin-bottom: 28px;
+    display: inline-flex; align-items: center; gap: 14px;
   }
-  .links {
-    display: flex; gap: 28px;
-    font-family: var(--mono);
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    margin-top: 48px;
-  }
-  .links a {
-    color: var(--ink);
-    text-decoration: none;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--rule);
-    transition: border-color .25s, color .25s;
-  }
-  .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-  .links a::after { content: " →"; color: var(--ink-faint); transition: color .25s; }
-  .links a:hover::after { color: var(--accent); }
-  footer {
-    padding: 32px 48px;
-    font-family: var(--mono);
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--ink-faint);
-  }
+  .eyebrow .line { width: 32px; height: 1px; background: var(--ink-faint); }
 </style>
 </head>
-<body data-cc-id="cc-1" style="cursor: crosshair;">
-  <header class="mark"><span class="dot"></span> Wiki Chaves</header>
+<body>
 
-  <main data-cc-id="cc-4">
-    <div class="intro">
-      <div class="eyebrow" data-cc-id="cc-5" style="">Wiki Chaves</div>
-      <h1 data-cc-id="cc-2" style=""></h1><h1 style="font-family: &quot;Source Serif 4&quot;, Georgia, serif;">Designer &amp; musician</h1>
-      <p data-cc-id="cc-3" style="">I make instrumental records and design software.</p>
-      <div class="links">
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><span class="dot"></span> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow"><span class="line"></span> Uruguay</div>
+      <h1 class="display">Designer &amp; <em>musician.</em></h1>
+      <p class="lede">I make instrumental records and design software — usually in quiet rooms, near the coast, with a cup of coffee in hand.</p>
+      <div class="link-list">
         <a href="/design">Design</a>
         <a href="/music">Music</a>
       </div>
-    </div>
-  </main>
+    </section>
+  </div>
+</main>
 
-  <footer data-cc-id="cc-1" style="">© Wiki Chaves · Based in Uruguay</footer>
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <nav>
+      <a href="/design">Design</a>
+      <a href="/music">Music</a>
+    </nav>
+  </div>
+</footer>
 
-
-</body></html>
+</body>
+</html>

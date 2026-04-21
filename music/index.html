@@ -17,7 +17,7 @@
     --ink-faint:  #5a574f;
     --rule:       #23231f;
     --rule-2:     #2d2c27;
-    --accent:     #e07a5f;   /* claude-ish coral */
+    --accent:     #d9a441;   /* amber — shared across wikichaves.com */
     --accent-ink: #0d0d0e;
     --serif: "Source Serif 4", "Tiempos Text", Georgia, serif;
     --sans:  "Inter", system-ui, sans-serif;
@@ -73,6 +73,11 @@
     content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: var(--accent);
   }
   .nav-meta { color: var(--ink-dim); }
+  .nav-sep { color: var(--ink-faint); padding: 0 4px; }
+  @media (max-width: 900px) {
+    .nav-sep { display: none; }
+    .nav-links { gap: 18px; }
+  }
 
   /* ------- HERO ------- */
   .hero {
@@ -483,32 +488,20 @@
   /* ------- FOOTER ------- */
   .foot {
     max-width: 1240px; margin: 0 auto;
-    padding: 120px 48px 200px;
+    padding: 96px 48px 48px;
   }
-  .foot-wave {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    max-width: 900px;
-    margin: 0 0 48px;
-  }
-  .foot-wave .accent { color: var(--accent); }
-  .foot-wave a { border-bottom: 1px solid var(--rule-2); transition: border-color .2s, color .2s; }
-  .foot-wave a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
   .foot-meta {
-    display: flex; justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; flex-wrap: wrap;
     border-top: 1px solid var(--rule);
     padding-top: 24px;
     font-family: var(--mono);
     font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-dim);
   }
-  .foot-meta .cluster { display: flex; gap: 28px; }
-  .foot-meta a:hover { color: var(--ink); }
+  .foot-meta nav { display: flex; gap: 24px; }
+  .foot-meta nav a { color: var(--ink-dim); transition: color .2s; }
+  .foot-meta nav a:hover { color: var(--accent); }
 
   /* ------- MINI PLAYER ------- */
   .player {
@@ -676,11 +669,10 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-mark"><span class="dot"></span> WIKI CHAVES MUSIC</a>
+    <a href="/" class="nav-mark"><span class="dot"></span> Wiki Chaves</a>
     <div class="nav-links">
-      <a href="#biography">Biography</a>
-      <a href="#discography">Discography</a>
-      <a href="#listen">Listen On</a>
+      <a href="/design">Design</a>
+      <a href="/music" class="active">Music</a>
     </div>
   </div>
 </nav>
@@ -734,8 +726,12 @@
 </section>
 
 <footer class="foot">
-  <div class="foot-meta" style="border-width: 0px">
+  <div class="foot-meta">
     <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/design">Design</a>
+    </nav>
   </div>
 </footer>
 
