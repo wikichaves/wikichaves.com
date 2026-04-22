@@ -1,14 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiki Chaves — Design</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css?v=2">
 <style>
   .page {
     padding: 96px 0 64px;
@@ -37,9 +37,29 @@
     display: inline-block;
     transition: border-color .25s, color .25s;
   }
-  details.more summary::-webkit-details-marker { display: none; }
   details.more summary:hover { border-bottom-color: var(--accent); }
+  details.more summary::-webkit-details-marker { display: none; }
   details.more summary .close { display: none; }
+
+  .inline-photo {
+    margin: 32px 0;
+    padding: 0;
+  }
+  .inline-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    filter: grayscale(0.12) contrast(0.98);
+  }
+  .inline-photo figcaption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-top: 12px;
+  }
   details.more[open] summary .open { display: none; }
   details.more[open] summary .close { display: inline; }
   details.more summary::after { content: "  ↓"; color: var(--ink-faint); }
@@ -88,11 +108,11 @@
   }
 </style>
 </head>
-<body>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-mark"><span class="dot"></span> Wiki Chaves</a>
+    <a href="/" class="nav-mark"><img class="mark" src="../favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
       <a href="/design" class="active">Design</a>
       <a href="/music">Music</a>
@@ -107,7 +127,7 @@
       <div class="col-body">
         <h1 class="display">Product Designer.</h1>
 
-        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies such as Netflix, Airbnb, and Meta. My passion lies in transforming concepts into tangible, impactful products.</p>
+        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies such as Netflix, Airbnb, Meta, and Mercado Libre. My passion lies in transforming concepts into tangible, impactful products.</p>
 
         <details class="more">
           <summary><span class="open">Read more</span><span class="close">Read less</span></summary>
@@ -116,8 +136,15 @@
             <p>My first job was as the audiovisual guy at a school — connecting TVs, projectors and sound systems — while also designing and building the school's website. In my free time I took on freelance work for friends and family who wanted an online presence.</p>
             <p>In 2006 I joined Lenovo's local branch in Buenos Aires. It was my first leadership role, running a team of six designers producing homepage graphics, banners, and email marketing for internal clients across the US, Canada, and Latin America.</p>
             <p>Through the rest of the 2000s I worked as an Art Director at several design agencies, designing and often coordinating production of campaign-oriented websites for brands like Hewlett Packard, Procter &amp; Gamble, Volkswagen, and Intel.</p>
+
             <p>In early 2011 I started looking for jobs outside Argentina and found an ad for a position at Wences Casares' next startup in Palo Alto. Several interviews and two design exercises later, I got the job. I packed my things and moved to California to start <em>Lemon Wallet</em> — living the full startup cycle over two and a half years: core product, brand, launch, pivot, product-market fit, revenue, and acquisition in December 2013.</p>
             <p>In 2014 I joined <em>Xapo</em> as Head of Design, leading both product and marketing. The challenge was huge — building a product on top of bitcoin, an emerging technology, and communicating it to the market. In just a few months we positioned Xapo as the most secure bitcoin wallet in the world.</p>
+
+            <figure class="inline-photo">
+              <img src="photos/aerolab-office-sf.webp" alt="Aerolab's San Francisco office" loading="lazy">
+              <figcaption>Aerolab's office in San Francisco, 2015.</figcaption>
+            </figure>
+
             <p>In 2015 I partnered with Aerolab, one of the best product design agencies in Argentina, to open an office in San Francisco. I looked for new leads in the Bay Area and worked with our team in Buenos Aires to deliver.</p>
             <p>In 2016 I started at <em>Airbnb</em>, on the Search/Decide team. Our goal was to help guests make better decisions when booking a home — I worked on listing cards redesign, product detail page optimization, and urgency and commitment messages.</p>
             <p>In 2020 I joined <em>Netflix</em> on the Design System team, mostly creating, extending, and maintaining components for Hawkins Professional, the design system used to build internal tools at Netflix.</p>
@@ -126,13 +153,14 @@
         </details>
       </div>
 
-      <div class="section-label"><span class="num">02</span> Selected experience</div>
+      <div class="section-label" data-cc-id="cc-3" style=""><span class="num">02</span>&nbsp;experience</div>
       <div class="col-body">
         <div class="logos">
-          <span class="logo">Xapo Bank</span>
+          <span class="logo" data-cc-id="cc-2" style="">Xapo</span>
           <span class="logo">Airbnb</span>
           <span class="logo">Netflix</span>
           <span class="logo">Meta</span>
+          <span class="logo">Mercado Libre</span>
         </div>
       </div>
 
@@ -149,7 +177,7 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <span>© Wiki Chaves · Based in Uruguay</span>
     <nav>
       <a href="/design">Design</a>
       <a href="/music">Music</a>
@@ -157,5 +185,6 @@
   </div>
 </footer>
 
-</body>
-</html>
+
+
+</body></html>

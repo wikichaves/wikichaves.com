@@ -1,14 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiki Chaves</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2">
 <style>
   .hero {
     padding: clamp(80px, 14vh, 160px) 0 clamp(64px, 10vh, 120px);
@@ -18,7 +18,25 @@
     max-width: 12ch;
   }
   .hero .display em { color: var(--ink-dim); font-style: italic; }
-  .hero .lede { margin-bottom: 56px; max-width: 520px; }
+  .hero .lede { margin-bottom: 18px; max-width: 520px; }
+  .hero .aside {
+    margin: 0 0 56px;
+    max-width: 520px;
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+  .hero .aside a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule-2);
+    transition: color .2s, border-color .2s;
+  }
+  .hero .aside a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
   .hero .link-list { margin-top: 8px; }
   .eyebrow {
     font-family: var(--mono);
@@ -32,11 +50,11 @@
   .eyebrow .line { width: 32px; height: 1px; background: var(--ink-faint); }
 </style>
 </head>
-<body>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-mark"><span class="dot"></span> Wiki Chaves</a>
+    <a href="/" class="nav-mark"><img class="mark" src="favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
       <a href="/design">Design</a>
       <a href="/music">Music</a>
@@ -49,7 +67,8 @@
     <section class="hero">
       <div class="eyebrow"><span class="line"></span> Uruguay</div>
       <h1 class="display">Designer &amp; <em>musician.</em></h1>
-      <p class="lede">I make instrumental records and design software — usually in quiet rooms, near the coast, with a cup of coffee in hand.</p>
+      <p class="lede">I make instrumental records and design software.</p>
+      <p class="aside"><em>Lately, also building <a href="https://casabosquemontoya.com/" target="_blank" rel="noopener">cabins in the woods</a>.</em></p>
       <div class="link-list">
         <a href="/design">Design</a>
         <a href="/music">Music</a>
@@ -60,7 +79,7 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <span>© Wiki Chaves · Based in Uruguay</span>
     <nav>
       <a href="/design">Design</a>
       <a href="/music">Music</a>
@@ -68,5 +87,6 @@
   </div>
 </footer>
 
-</body>
-</html>
+
+
+</body></html>
