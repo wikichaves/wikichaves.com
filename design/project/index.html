@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects · Wiki Chaves</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=2">
+<style>
+  .page {
+    padding: 96px 0 64px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 64px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+  .page .display { margin: 0 0 24px; }
+  .page .lede { margin-bottom: 0; }
+
+  /* per-project label */
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 6px;
+  }
+  .project-meta .company {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .project-meta .years,
+  .project-meta .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .project-meta .role { color: var(--accent); }
+
+  /* project link card */
+  a.project-link {
+    display: block;
+    padding: 8px 0 4px;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 0;
+    transition: transform .2s;
+  }
+  a.project-link h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 3vw, 38px);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    color: var(--ink);
+    transition: color .25s;
+  }
+  a.project-link h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  a.project-link h2::after {
+    content: " →";
+    color: var(--ink-faint);
+    font-style: normal;
+    transition: color .25s, transform .25s;
+    display: inline-block;
+  }
+  a.project-link p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    margin: 0;
+    max-width: 620px;
+    text-wrap: pretty;
+  }
+  a.project-link:hover h2 { color: var(--accent); }
+  a.project-link:hover h2::after { color: var(--accent); transform: translateX(4px); }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; column-gap: 0; row-gap: 20px; padding-top: 56px; }
+    .page .section-label { padding-top: 0; margin-top: 20px; }
+    .page .section-label:first-child { margin-top: 0; }
+    .project-meta { padding-top: 0; flex-direction: row; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; }
+    .project-meta .company { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="/favicon.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design" class="active">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- Header -->
+      <div class="section-label"><span class="num">01</span> Projects</div>
+      <div class="col-body">
+        <a href="/design" class="back-link">← Back to Design</a>
+        <h1 class="display">Selected <em>work.</em></h1>
+        <p class="lede">A handful of case studies across product design and design systems — most recent first.</p>
+      </div>
+
+      <!-- Netflix -->
+      <div class="section-label">
+        <div class="project-meta">
+          <div class="company">Netflix</div>
+          <div class="years">2020 – 2022</div>
+          <div class="role">Design Systems</div>
+        </div>
+      </div>
+      <div class="col-body">
+        <a href="/design/project/netflix-design-system" class="project-link">
+          <h2>Hawkins <em>Design System.</em></h2>
+          <p>Creating, extending, and maintaining components for Hawkins Professional — the design system behind Netflix's internal tools.</p>
+        </a>
+      </div>
+
+      <!-- Airbnb PDP -->
+      <div class="section-label">
+        <div class="project-meta">
+          <div class="company">Airbnb</div>
+          <div class="years">2017 – 2018</div>
+          <div class="role">Product Design</div>
+        </div>
+      </div>
+      <div class="col-body">
+        <a href="/design/project/airbnb-pdp" class="project-link">
+          <h2>Product <em>Detail Page.</em></h2>
+          <p>Improving Airbnb's PDP through more than thirty small, well-tested iterations over the course of a year.</p>
+        </a>
+      </div>
+
+      <!-- Airbnb Cards -->
+      <div class="section-label">
+        <div class="project-meta">
+          <div class="company">Airbnb</div>
+          <div class="years">2017 – 2018</div>
+          <div class="role">Design Systems</div>
+        </div>
+      </div>
+      <div class="col-body">
+        <a href="/design/project/airbnb-cards" class="project-link">
+          <h2>Cards <em>System.</em></h2>
+          <p>Unifying Airbnb's listing card across Homes, Experiences, and mobile — then shipping it into the Design Language System.</p>
+        </a>
+      </div>
+
+      <!-- Xapo -->
+      <div class="section-label">
+        <div class="project-meta">
+          <div class="company">Xapo</div>
+          <div class="years">2014 – 2015</div>
+          <div class="role">Product Design</div>
+        </div>
+      </div>
+      <div class="col-body">
+        <a href="/design/project/xapo" class="project-link">
+          <h2>Simple and <em>robust.</em></h2>
+          <p>Positioning Xapo as the most secure bitcoin wallet in the world, as part of the founding team.</p>
+        </a>
+      </div>
+
+      <!-- Lemon -->
+      <div class="section-label">
+        <div class="project-meta">
+          <div class="company">Lemon</div>
+          <div class="years">2011 – 2014</div>
+          <div class="role">Product Design</div>
+        </div>
+      </div>
+      <div class="col-body">
+        <a href="/design/project/lemon-wallet" class="project-link">
+          <h2>Optimizing <em>conversion.</em></h2>
+          <p>Rethinking Lemon Wallet's onboarding flow — a 30% lift in completion, and the path that led to the LifeLock acquisition.</p>
+        </a>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
