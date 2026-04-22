@@ -381,11 +381,48 @@
   .release-external::after { content: " ↗"; }
 
   /* tracklist */
-  .tracklist {
+  .tracks-section {
     margin-top: 32px;
+    max-width: 620px;
+  }
+  .tracks-toggle {
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-top: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color .2s;
+  }
+  .tracks-toggle:hover { color: var(--ink); }
+  .tracks-toggle .label-open { display: none; }
+  .tracks-section.open .label-closed { display: none; }
+  .tracks-section.open .label-open { display: inline; }
+  .tracks-toggle-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    color: var(--ink-dim);
+    transition: transform .3s ease, color .2s;
+  }
+  .tracks-toggle-caret svg { width: 12px; height: 12px; display: block; }
+  .tracks-toggle:hover .tracks-toggle-caret { color: var(--ink); }
+  .tracks-section.open .tracks-toggle-caret { transform: rotate(180deg); }
+  .tracklist {
     border-top: 1px solid var(--rule);
     max-width: 620px;
   }
+  .tracks-section:not(.open) .tracklist { display: none; }
   .track-row {
     display: grid;
     grid-template-columns: 28px minmax(0,1fr) auto auto;
@@ -444,6 +481,74 @@
   .track-row.active .track-play { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .track-row.disabled .track-play { border-color: var(--rule); color: var(--ink-faint); }
   .track-play svg { width: 9px; height: 9px; }
+
+  /* ------- PRESS ------- */
+  .press {
+    max-width: 1240px; margin: 0 auto;
+    padding: 96px 48px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 80px;
+  }
+  .press-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+    max-width: 720px;
+  }
+  .press-list li { border-bottom: 1px solid var(--rule); }
+  .press-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+    color: var(--ink);
+    transition: color .25s, padding-left .25s;
+  }
+  .press-list a:hover { color: var(--accent); padding-left: 8px; }
+  .press-list .press-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .press-list .press-pub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .press-list .press-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.3;
+  }
+  .press-list .press-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .press-list .arr { color: var(--ink-faint); transition: transform .25s, color .25s; }
+  .press-list a:hover .arr { color: var(--accent); transform: translate(2px, -2px); }
+  @media (max-width: 900px) {
+    .press { padding-left: 24px; padding-right: 24px; grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .press-list a { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
 
   /* ------- LISTEN ON ------- */
   .listen {
@@ -734,6 +839,41 @@
   </div>
 </section>
 
+<section class="press" id="press">
+  <div class="section-label"><span class="num">04</span> Press</div>
+  <div>
+    <ul class="press-list">
+      <li>
+        <a href="https://www.mixcloud.com/lowlight/chill-summer-guitars/" target="_blank" rel="noopener">
+          <span class="press-main">
+            <span class="press-pub">Lowlight · Mixcloud</span>
+            <span class="press-title">Chill Summer Guitars</span>
+          </span>
+          <span class="press-meta">Aug 2021 <span class="arr">↗</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://muzikalia.com/entrevistamos-wiki-chaves-presenta-raiz/" target="_blank" rel="noopener">
+          <span class="press-main">
+            <span class="press-pub">Muzikalia</span>
+            <span class="press-title">Entrevistamos a Wiki Chaves, presenta Raíz</span>
+          </span>
+          <span class="press-meta">Jul 2021 <span class="arr">↗</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="http://cassetteblog.com/2018/05/wiki-chaves-andante/" target="_blank" rel="noopener">
+          <span class="press-main">
+            <span class="press-pub">Cassette Blog</span>
+            <span class="press-title">Wiki Chaves — Andante</span>
+          </span>
+          <span class="press-meta">May 2018 <span class="arr">↗</span></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <footer class="foot">
   <div class="foot-meta">
     <span>© Wiki Chaves</span>
@@ -979,17 +1119,28 @@ RENDERED.forEach((r, i) => {
         <a href="${r.url || '#'}" ${r.url ? 'target="_blank" rel="noopener"' : ''} class="release-external">${r.external}</a>
       </div>
       ${r.tracks ? `
-      <div class="tracklist">
-        ${r.tracks.map(t => `
-          <div class="track-row ${t.audio ? '' : 'disabled'}" data-idx="${origIdx}" data-track="${t.n - 1}">
-            <div class="track-num">${String(t.n).padStart(2,'0')}</div>
-            <div class="track-title">${t.title}</div>
-            <div class="track-status">${t.audio ? 'Preview' : 'Coming soon'}</div>
-            <div class="track-play">
-              <svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5V1z"/></svg>
+      <div class="tracks-section" data-idx="${origIdx}">
+        <button class="tracks-toggle" type="button" aria-expanded="false" data-idx="${origIdx}">
+          <span>
+            <span class="label-closed">${r.tracks.length} Tracks</span>
+            <span class="label-open">Hide Tracks</span>
+          </span>
+          <span class="tracks-toggle-caret" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4.5l4 4 4-4"/></svg>
+          </span>
+        </button>
+        <div class="tracklist">
+          ${r.tracks.map(t => `
+            <div class="track-row ${t.audio ? '' : 'disabled'}" data-idx="${origIdx}" data-track="${t.n - 1}">
+              <div class="track-num">${String(t.n).padStart(2,'0')}</div>
+              <div class="track-title">${t.title}</div>
+              <div class="track-status">${t.audio ? 'Preview' : 'Coming soon'}</div>
+              <div class="track-play">
+                <svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5V1z"/></svg>
+              </div>
             </div>
-          </div>
-        `).join('')}
+          `).join('')}
+        </div>
       </div>` : ''}
     </div>
   `;
@@ -1100,6 +1251,14 @@ function openPlayer(idx, trackIdx=null, auto=true) {
   document.querySelectorAll('.release').forEach(el => el.classList.remove('playing'));
   const el = document.querySelector(`.release[data-idx="${idx}"]`);
   if (el) el.classList.add('playing');
+
+  // auto-expand this release's tracks
+  const section = document.querySelector(`.tracks-section[data-idx="${idx}"]`);
+  if (section && !section.classList.contains('open')) {
+    section.classList.add('open');
+    const toggleBtn = section.querySelector('.tracks-toggle');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+  }
 
   refreshLabels();
   refreshTrackRows();
@@ -1229,6 +1388,14 @@ document.querySelectorAll('.play-btn').forEach(btn => {
     const idx = +btn.dataset.idx;
     if (current === idx) toggle();
     else openPlayer(idx);
+  });
+});
+
+document.querySelectorAll('.tracks-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.tracks-section');
+    const isOpen = section.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 });
 
