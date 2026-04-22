@@ -31,7 +31,7 @@
   body {
     font-family: var(--sans);
     font-weight: 300;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -504,6 +504,13 @@
   .foot-meta nav { display: flex; gap: 24px; }
   .foot-meta nav a { color: var(--ink-dim); transition: color .2s; }
   .foot-meta nav a:hover { color: var(--accent); }
+  .foot-meta .contact-link {
+    color: var(--ink-dim);
+    text-decoration: none;
+    transition: color .2s;
+    cursor: pointer;
+  }
+  .foot-meta .contact-link:hover { color: var(--accent); }
 
   /* ------- MINI PLAYER ------- */
   .player {
@@ -673,8 +680,8 @@
   <div class="nav-inner">
     <a href="/" class="nav-mark"><img class="mark" src="../favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
-      <a href="/design">Design</a>
       <a href="/music" class="active">Music</a>
+      <a href="/design">Design</a>
     </div>
   </div>
 </nav>
@@ -729,11 +736,8 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Based in Uruguay</span>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/design">Design</a>
-    </nav>
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
   </div>
 </footer>
 
@@ -1295,6 +1299,17 @@ tweaksClose.addEventListener('click', () => {
   try { window.parent.postMessage({type:'__edit_mode_deactivate'}, '*'); } catch(e){}
 });
 try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+</script>
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
 </script>
 
 </body>
