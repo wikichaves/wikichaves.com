@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Netflix — Hawkins Design System · Wiki Chaves</title>
+<link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../shared.css?v=2">
+<style>
+  .page {
+    padding: 96px 0 48px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+
+  /* title block */
+  .project-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
+  .project-kicker .role { color: var(--accent); }
+  .display {
+    font-size: clamp(44px, 5.8vw, 76px);
+    margin: 0 0 28px;
+  }
+  .project-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .project-lede em { color: var(--ink); font-style: italic; }
+
+  /* prose */
+  .prose { max-width: 640px; }
+  .prose h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .prose h2 em { font-style: italic; color: var(--accent); }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .prose p em { color: var(--ink); font-style: italic; }
+  .prose a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+  }
+  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* steps */
+  .steps { counter-reset: step; margin: 8px 0 0; }
+  .step {
+    padding: 32px 0 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .step:first-child { border-top: 0; padding-top: 0; }
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    min-width: 28px;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--ink);
+  }
+  .step p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .step p:last-of-type { margin-bottom: 22px; }
+
+  /* figures */
+  figure.shot {
+    margin: 4px 0 0;
+    padding: 0;
+  }
+  figure.shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  figure.shot figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 12px;
+  }
+  figure.shot.wide img { border-radius: 2px; }
+
+  /* hero & closer full-width figures */
+  .figure-band {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+  .figure-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .figure-band figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* quote */
+  .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 0;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+  .quote-attr {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* project nav */
+  .project-nav {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .project-nav a {
+    display: block;
+    padding: 20px 0;
+    transition: color .2s;
+  }
+  .project-nav a:hover { color: var(--accent); }
+  .project-nav .dir {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .project-nav .title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .project-nav a:hover .title { color: var(--accent); }
+  .project-nav .next { text-align: right; }
+  .project-nav .disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      row-gap: 20px;
+      padding-top: 56px;
+    }
+    .page .section-label { padding-top: 0; margin-top: 16px; }
+    .page .section-label:first-child { margin-top: 0; }
+    .project-nav { grid-template-columns: 1fr; }
+    .project-nav .next { text-align: left; }
+    .step-head { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="../../../favicon.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/music">Music</a>
+      <a href="/design" class="active">Design</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- 01 · Overview -->
+      <div class="section-label"><span class="num">01</span> Project</div>
+      <div class="col-body">
+        <a href="/design" class="back-link">← Back to Design</a>
+        <div class="project-kicker">
+          <span>Netflix</span><span class="sep">·</span><span>2020 – 2022</span><span class="sep">·</span><span class="role">Design Systems</span>
+        </div>
+        <h1 class="display">Hawkins <em>Design System.</em></h1>
+        <p class="project-lede">While at Netflix, I mostly worked on creating, extending, and maintaining components for <em>Hawkins Professional</em> — the design system used to build internal tools at Netflix.</p>
+      </div>
+
+      <!-- Hero image (full width under the columns) -->
+      <figure class="figure-band">
+        <img src="photos/Netflix-Design-System.png" alt="Hawkins Design System" loading="lazy">
+        <figcaption>Hawkins Design System</figcaption>
+      </figure>
+
+      <!-- 02 · What is Hawkins -->
+      <div class="section-label"><span class="num">02</span> Context</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>What is <em>Hawkins?</em></h2>
+          <p>Hawkins — named after the fictional town where <em>Stranger Things</em> events occur — is Netflix's Design System. It comes in two flavors: <em>Hawkins Consumer</em>, tailored for any member-facing experiences including streaming, and <em>Hawkins Professional</em>, tailored for enterprise-level workflow built by Netflix Studio and also internal tools.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="photos/Hawkins-Town.png" alt="Hawkins Town illustration" loading="lazy">
+        <figcaption>Hawkins Town by <a href="https://www.linkedin.com/in/martinbekerman/" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule-2);">Martin Bekerman</a></figcaption>
+      </figure>
+
+      <!-- 03 · Process -->
+      <div class="section-label"><span class="num">03</span> Process</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>From request to <em>release.</em></h2>
+          <p>I'd like to walk you through how we operated — from the request of a feature to its publishing.</p>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="section-label"><span class="num">04</span> Workflow</div>
+      <div class="col-body">
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">01</div>
+              <h3 class="step-title">Backlog</h3>
+            </div>
+            <p>Most requests came through Slack channels. Sometimes the ask was to create a brand-new component, sometimes to extend an existing one, and other times simply a bug report. Everything was logged into our backlog in Trello.</p>
+            <figure class="shot">
+              <img src="photos/Backlog.png" alt="Backlog in Trello" loading="lazy">
+              <figcaption>Backlog in Trello</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">02</div>
+              <h3 class="step-title">Voting</h3>
+            </div>
+            <p>Each quarter we'd pack all our requests and over 50 Product Designers would vote on the tasks they wanted us to work on. Designers were excited to participate in shaping our roadmap.</p>
+            <figure class="shot">
+              <img src="photos/Voting.png" alt="Quarterly voting system" loading="lazy">
+              <figcaption>Quarterly Voting System</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">03</div>
+              <h3 class="step-title">Roadmap</h3>
+            </div>
+            <p>After voting closed, we'd prioritize based on number of votes, estimate each task, and build the quarterly roadmap.</p>
+            <figure class="shot">
+              <img src="photos/Roadmap.png" alt="Roadmap communication" loading="lazy">
+              <figcaption>Roadmap Communication</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">04</div>
+              <h3 class="step-title">Design progress</h3>
+            </div>
+            <p>Once the roadmap was announced, I'd start working on each task and move it from <em>Backlog</em> to <em>In Progress</em>. Most of the time I'd create a branch in our Figma library and work directly there. When the task was done, I'd request feedback — either internally or from the designer or team that originally requested the feature.</p>
+            <figure class="shot">
+              <img src="photos/Branching.png" alt="Design process using Figma branches" loading="lazy">
+              <figcaption>Design process using Figma branches</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">05</div>
+              <h3 class="step-title">Working with engineers</h3>
+            </div>
+            <p>Once the request was done, I'd move the task to <em>Ready for Engineering</em> and engineers would take over. Depending on the component I'd create specs, but most of the time it wasn't needed thanks to the use of foundational tokens and re-utilizing components while building bigger patterns. Once engineering work was done, they'd send me a link where I could review and sign off — we'd then agree on a release day so the feature shipped in sync with eng.</p>
+            <figure class="shot">
+              <img src="photos/Engineering-Documentation.png" alt="Engineering documentation" loading="lazy">
+              <figcaption>Engineering Documentation</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">06</div>
+              <h3 class="step-title">Merging, publishing, and announcing</h3>
+            </div>
+            <p>The last part of the process was merging the branch, publishing the library, and announcing the changes on Slack and through our changelog page. This was my favorite part — I really loved shipping new stuff and seeing the reaction of the designers and engineers who'd use the new features.</p>
+            <figure class="shot">
+              <img src="photos/Announcement.png" alt="Update announcement" loading="lazy">
+              <figcaption>Update Announcement</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">07</div>
+              <h3 class="step-title">Support</h3>
+            </div>
+            <p>I regularly helped with support over Slack, Office Hours, and ad-hoc 1:1s.</p>
+            <figure class="shot">
+              <img src="photos/Office-Hours.png" alt="Office hours" loading="lazy">
+              <figcaption>Office Hours</figcaption>
+            </figure>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 05 · Wrap up -->
+      <div class="section-label"><span class="num">05</span> Wrap up</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Wrapping <em>up.</em></h2>
+          <p>I really enjoyed helping improve and extend <em>Hawkins Professional</em> adoption across the company to over <em>400 projects.</em> If you'd like to learn more about Hawkins, you should <a href="https://youtu.be/nFe6US9aA_U" target="_blank" rel="noopener">watch this video</a>.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="photos/Hawkins-Dark-Theme-1.png" alt="Hawkins Professional dark theme" loading="lazy">
+        <figcaption>Hawkins Professional — Dark Theme</figcaption>
+      </figure>
+
+      <!-- 06 · Peer quote -->
+      <div class="section-label"><span class="num">06</span> Words from peers</div>
+      <div class="col-body">
+        <blockquote class="quote">
+          Wiki joined Netflix's design systems team as a contractor; his impact was so immediate that we decided to convert him to a full-time role after a few weeks. Over my entire career, I have rarely seen someone so quick, efficient, and at the same time detail-oriented as Wiki. He's a fast learner, a responsible colleague, and a friendly person.
+          <span class="quote-attr">— Former Netflix teammate</span>
+        </blockquote>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
