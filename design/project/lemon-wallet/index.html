@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lemon Wallet · Wiki Chaves</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=2">
+<style>
+  .page {
+    padding: 96px 0 48px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+
+  /* title block */
+  .project-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
+  .project-kicker .role { color: var(--accent); }
+  .display {
+    font-size: clamp(44px, 5.8vw, 76px);
+    margin: 0 0 28px;
+  }
+  .project-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .project-lede em { color: var(--ink); font-style: italic; }
+
+  /* prose */
+  .prose { max-width: 640px; }
+  .prose h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .prose h2 em { font-style: italic; color: var(--accent); }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .prose p em { color: var(--ink); font-style: italic; }
+  .prose a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+  }
+  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .prose .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 8px 0 22px;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .prose .pullquote-attr {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* steps */
+  .steps { margin: 8px 0 0; }
+  .step {
+    padding: 32px 0 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .step:first-child { border-top: 0; padding-top: 0; }
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    min-width: 28px;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--ink);
+  }
+  .step p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .step p:last-of-type { margin-bottom: 22px; }
+  figure.shot {
+    margin: 4px 0 0;
+    padding: 0;
+  }
+  figure.shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  figure.shot figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 12px;
+  }
+
+  /* full-width figures */
+  .figure-band {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+  .figure-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .figure-band figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* quote */
+  .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 0;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+  .quote-attr {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      row-gap: 20px;
+      padding-top: 56px;
+    }
+    .page .section-label { padding-top: 0; margin-top: 16px; }
+    .page .section-label:first-child { margin-top: 0; }
+    .step-head { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="/favicon.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design" class="active">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- 01 · Overview -->
+      <div class="section-label"><span class="num">01</span> Project</div>
+      <div class="col-body">
+        <a href="/design" class="back-link">← Back to Design</a>
+        <div class="project-kicker">
+          <span>Lemon</span><span class="sep">·</span><span>2011 – 2014</span><span class="sep">·</span><span class="role">Product Design</span>
+        </div>
+        <h1 class="display">Optimizing <em>conversion.</em></h1>
+        <p class="project-lede">How the Lemon Wallet app successfully increased conversion by rethinking the <em>onboarding flow</em>.</p>
+      </div>
+
+      <!-- Hero -->
+      <figure class="figure-band">
+        <img src="/design/project/lemon-wallet/photos/Lemon-01.jpg" alt="Lemon Wallet logo" loading="lazy">
+        <figcaption>Lemon Wallet</figcaption>
+      </figure>
+
+      <!-- 02 · About -->
+      <div class="section-label"><span class="num">02</span> About</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>About <em>Lemon.</em></h2>
+          <p>In May 2011, <em>Wences Casares</em> recruited me to join his new startup. At that point there was no product and no name — he just wanted to do something in fintech. I packed my bags and moved from Buenos Aires to Palo Alto.</p>
+          <p>We started developing a basic product that scanned receipts, extracting the valuable information and organizing it. Over time we learned that the receipt feature alone was not generating enough interest, so we started thinking about something more ambitious.</p>
+        </div>
+      </div>
+
+      <!-- 03 · Product -->
+      <div class="section-label"><span class="num">03</span> Product</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>product.</em></h2>
+          <p>We noticed people were taking pictures of their documents and cards and emailing them to themselves as a backup. Why not make a product out of that?</p>
+          <p>When we launched Lemon Wallet in March 2012, we positioned it as <em>"a backup of your wallet"</em> — helping users take good pictures of all their cards, extracting as much information as possible, and organizing them neatly.</p>
+          <p>But value was mostly perceived too late — after something went wrong:</p>
+          <blockquote class="pullquote">
+            I should have scanned all my cards with Lemon.
+            <span class="pullquote-attr">— Users, after losing their wallet</span>
+          </blockquote>
+          <p>The magic moment was lost. Note that at the time Passbook had not been launched, and skeuomorphism was still a thing.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/lemon-wallet/photos/Lemon-02.jpg" alt="Lemon Wallet — Feed, Cards and Receipts screens" loading="lazy">
+        <figcaption>Feed, Cards &amp; Receipts</figcaption>
+      </figure>
+
+      <!-- 04 · Problem -->
+      <div class="section-label"><span class="num">04</span> Context</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>problem.</em></h2>
+          <p>We were seeing significant churn, so we surveyed users with a simple question: <em>"Why did you stop using Lemon?"</em> The top answer was striking.</p>
+          <blockquote class="pullquote">
+            I don't see the benefit of using it.
+            <span class="pullquote-attr">— 41% of surveyed users</span>
+          </blockquote>
+          <p>Users were not perceiving value quickly enough.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/lemon-wallet/photos/Lemon-03.jpg" alt="Survey results — why users stopped using Lemon" loading="lazy">
+        <figcaption>Survey — reasons users stopped using Lemon</figcaption>
+      </figure>
+
+      <!-- 05 · Iterating -->
+      <div class="section-label"><span class="num">05</span> Iterating</div>
+      <div class="col-body">
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">01</div>
+              <h3 class="step-title">Product in use</h3>
+            </div>
+            <p>Showing the value right after users opened the app could make them <em>want</em> their cards backed up, just in case. That moment — seeing the value — was the perfect time to prompt them to scan.</p>
+            <p>I worked with <em>Mat Gallipoli</em> to create a series of images for an onboarding slideshow shown right after the app was opened, so users would immediately become aware of functions they might not have considered.</p>
+            <figure class="shot">
+              <img src="/design/project/lemon-wallet/photos/Lemon-05.jpg" alt="Lemon Wallet in use — boarding pass on a phone" loading="lazy">
+              <figcaption>Showing value in context</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">02</div>
+              <h3 class="step-title">User testing</h3>
+            </div>
+            <p>After releasing the photo onboarding, conversions began to improve — but something still wasn't fully working. We ran a series of user tests with an overhead camera filming people as they used the app.</p>
+            <p>We found two things. First, users were not thoroughly reading our copy. Second, a surprising number of users were literally <em>rubbing</em> the card on the phone screen, as if it were a scanning machine. We never saw that one coming.</p>
+            <figure class="shot">
+              <img src="/design/project/lemon-wallet/photos/Lemon-07.jpg" alt="User testing with an overhead camera" loading="lazy">
+              <figcaption>Testing with an overhead camera</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">03</div>
+              <h3 class="step-title">Video solution</h3>
+            </div>
+            <p>We decided to test a short video instead of the static photo slideshow. It solved the problem of users not reading, and it showed real-life situations that were easier to grasp. The final frame demonstrated the correct way to hold the phone and capture a card.</p>
+            <p>Immediately after that frame, the camera view opens — so users can start scanning right after they've seen the value, <em>and</em> been shown how to do it.</p>
+            <p>We were a bit skeptical about auto-playing a video right at launch — it felt intrusive, and there wasn't much information in 2012 about video usage in apps. But we tried it anyway.</p>
+            <figure class="shot">
+              <img src="/design/project/lemon-wallet/photos/Lemon-08.jpg" alt="Scanning a credit card in the Lemon app" loading="lazy">
+              <figcaption>Scanning a card, right after the video</figcaption>
+            </figure>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 06 · Launch -->
+      <div class="section-label"><span class="num">06</span> Launch</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Results at <em>launch.</em></h2>
+          <p>After all those changes we saw a <em>30% improvement</em> in completion flow. Users started scanning not only loyalty cards and IDs, but also their payment cards. Those changes allowed us to reduce churn and move on to the next step — monetization.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/lemon-wallet/photos/Lemon-09.jpg" alt="30% improvement in completion flow" loading="lazy">
+        <figcaption>+30% completion flow</figcaption>
+      </figure>
+
+      <!-- 07 · Epilogue -->
+      <div class="section-label"><span class="num">07</span> Epilogue</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>epilogue.</em></h2>
+          <p>Thanks to these improvements and other optimization efforts, we were able to launch a successful paid subscription — our path toward profitability.</p>
+          <p>A few months later, <em>LifeLock</em>, an identity-theft protection company looking for a free product with a paid subscription option, got interested in us. In December 2013, LifeLock acquired Lemon Wallet. For the next six months I stayed on at LifeLock, rebranding the product and adapting our paid subscription to LifeLock's strategy.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/lemon-wallet/photos/Lemon-10.jpg" alt="Lemon and LifeLock logos" loading="lazy">
+        <figcaption>LifeLock acquires Lemon Wallet — December 2013</figcaption>
+      </figure>
+
+      <!-- 08 · Peer quote -->
+      <div class="section-label"><span class="num">08</span> Words from peers</div>
+      <div class="col-body">
+        <blockquote class="quote">
+          Wiki is one of the best designers that I know. He truly understands how to design products that consumers fall in love with. The majority of Lemon's success was based on us having a beautiful mobile application that consumers enjoyed interacting with — and Wiki's design and UX vision helped make Lemon one of the most downloaded Finance apps ever.
+          <span class="quote-attr">— Former Lemon teammate</span>
+        </blockquote>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

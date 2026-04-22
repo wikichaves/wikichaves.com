@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbnb — Cards System · Wiki Chaves</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=2">
+<style>
+  .page {
+    padding: 96px 0 48px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+
+  /* title block */
+  .project-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
+  .project-kicker .role { color: var(--accent); }
+  .display {
+    font-size: clamp(44px, 5.8vw, 76px);
+    margin: 0 0 28px;
+  }
+  .project-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .project-lede em { color: var(--ink); font-style: italic; }
+
+  /* prose */
+  .prose { max-width: 640px; }
+  .prose h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .prose h2 em { font-style: italic; color: var(--accent); }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .prose p em { color: var(--ink); font-style: italic; }
+  .prose a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+  }
+  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .prose .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 8px 0 22px;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .prose .pullquote-attr {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* hero & full-width figures */
+  .figure-band {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+  .figure-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .figure-band figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* centered hero (single card) */
+  .figure-band.center img {
+    max-width: 420px;
+    margin: 0 auto;
+    border: none;
+    background: transparent;
+  }
+
+  /* quote */
+  .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 0;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+  .quote-attr {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      row-gap: 20px;
+      padding-top: 56px;
+    }
+    .page .section-label { padding-top: 0; margin-top: 16px; }
+    .page .section-label:first-child { margin-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="/favicon.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design" class="active">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- 01 · Overview -->
+      <div class="section-label"><span class="num">01</span> Project</div>
+      <div class="col-body">
+        <a href="/design" class="back-link">← Back to Design</a>
+        <div class="project-kicker">
+          <span>Airbnb</span><span class="sep">·</span><span>2017 – 2018</span><span class="sep">·</span><span class="role">Design Systems</span>
+        </div>
+        <h1 class="display">Cards <em>System.</em></h1>
+        <p class="project-lede">How we improved Airbnb's listing card <em>consistency</em> across multiple inventories and mediums.</p>
+      </div>
+
+      <!-- Hero -->
+      <figure class="figure-band center">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-Hero.png" alt="Airbnb listing card" loading="lazy">
+        <figcaption>A single listing card</figcaption>
+      </figure>
+
+      <!-- 02 · Problem -->
+      <div class="section-label"><span class="num">02</span> Context</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>problem.</em></h2>
+          <p>Airbnb's search results had different card shapes depending on the vertical — <em>Homes</em> and <em>Experiences</em>. The result was a fragmented experience and extra complexity whenever inventories were mixed. Cards didn't follow a common system or style.</p>
+          <p>Brian Chesky, Airbnb's CEO, personally asked our team to solve it. He wanted consistency across verticals, and an editorial feel aligned with Airbnb's brand initiatives.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-02.jpg" alt="Airbnb cards fragmentation" loading="lazy">
+        <figcaption>Fragmentation across verticals</figcaption>
+      </figure>
+
+      <!-- 03 · Approach -->
+      <div class="section-label"><span class="num">03</span> Approach</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>project.</em></h2>
+          <p>I worked with <em>Taido Nakajima</em> from the Trips team on a consistent, robust card system that could support homes, experiences, and beyond. Over six months we proposed nearly <em>30 versions</em> of the system to an ever-growing team. Brian Chesky himself was involved in the final rounds of review.</p>
+          <blockquote class="pullquote">
+            These little cards have more impressions than our Superbowl ad.
+            <span class="pullquote-attr">— Brian Chesky</span>
+          </blockquote>
+          <p>We wanted to do it right.</p>
+        </div>
+      </div>
+
+      <!-- 04 · Proposals -->
+      <div class="section-label"><span class="num">04</span> Proposals</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Across <em>surfaces.</em></h2>
+          <p>The system had to work across Homes, Experiences, and every mobile context — each with its own density and hierarchy needs. Below are the final proposals for each surface, with the original state on the left.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-04.jpg" alt="Homes proposal before and after" loading="lazy">
+        <figcaption>Homes — before and after</figcaption>
+      </figure>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-05.jpg" alt="Experiences proposal before and after" loading="lazy">
+        <figcaption>Experiences — before and after</figcaption>
+      </figure>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-06.jpg" alt="Mobile proposal" loading="lazy">
+        <figcaption>Mobile proposal</figcaption>
+      </figure>
+
+      <!-- 05 · System -->
+      <div class="section-label"><span class="num">05</span> System</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Into the <em>system.</em></h2>
+          <p>Once the card system was approved, I worked with <em>Pablo Caro</em> to incorporate it into our Design Language System and components library — specs, tokens, and variants. During this process I realized I loved working on design systems.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-cards/photos/Airbnb-Cards-07.jpg" alt="Card system specs — spacing, typography, sizes and colors" loading="lazy">
+        <figcaption>Specs — spacing, typography, sizes &amp; colors</figcaption>
+      </figure>
+
+      <!-- 06 · Results -->
+      <div class="section-label"><span class="num">06</span> Results</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Shipped to <em>everyone.</em></h2>
+          <p>We ran the new card system as an experiment and, after a few iterations, launched it to <em>100%</em> of our user base. This was, by a wide margin, the most impactful project I've worked on.</p>
+        </div>
+      </div>
+
+      <!-- 07 · Peer quote -->
+      <div class="section-label"><span class="num">07</span> Words from peers</div>
+      <div class="col-body">
+        <blockquote class="quote">
+          Wiki is a super talented, thorough, and passionate designer. I had the pleasure to work alongside him while he helped us expand the Design System at Airbnb.
+          <span class="quote-attr">— Former Airbnb designer</span>
+        </blockquote>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

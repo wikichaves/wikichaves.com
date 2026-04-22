@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbnb — Product Detail Page · Wiki Chaves</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=2">
+<style>
+  .page {
+    padding: 96px 0 48px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+
+  /* title block */
+  .project-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
+  .project-kicker .role { color: var(--accent); }
+  .display {
+    font-size: clamp(44px, 5.8vw, 76px);
+    margin: 0 0 28px;
+  }
+  .project-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .project-lede em { color: var(--ink); font-style: italic; }
+
+  /* prose */
+  .prose { max-width: 640px; }
+  .prose h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .prose h2 em { font-style: italic; color: var(--accent); }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .prose p em { color: var(--ink); font-style: italic; }
+  .prose a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+  }
+  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* steps */
+  .steps { counter-reset: step; margin: 8px 0 0; }
+  .step {
+    padding: 32px 0 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .step:first-child { border-top: 0; padding-top: 0; }
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    min-width: 28px;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--ink);
+  }
+  .step p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .step p:last-of-type { margin-bottom: 22px; }
+
+  /* figures */
+  figure.shot {
+    margin: 4px 0 0;
+    padding: 0;
+  }
+  figure.shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  figure.shot figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 12px;
+  }
+
+  /* before/after compare */
+  figure.compare {
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  figure.compare .side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  figure.compare img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  figure.compare .compare-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  figure.compare figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  /* hero & closer full-width figures */
+  .figure-band {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+  .figure-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .figure-band figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* quote */
+  .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 0;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+  .quote-attr {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      row-gap: 20px;
+      padding-top: 56px;
+    }
+    .page .section-label { padding-top: 0; margin-top: 16px; }
+    .page .section-label:first-child { margin-top: 0; }
+    .step-head { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="/favicon.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design" class="active">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- 01 · Overview -->
+      <div class="section-label"><span class="num">01</span> Project</div>
+      <div class="col-body">
+        <a href="/design" class="back-link">← Back to Design</a>
+        <div class="project-kicker">
+          <span>Airbnb</span><span class="sep">·</span><span>2017 – 2018</span><span class="sep">·</span><span class="role">Product Design</span>
+        </div>
+        <h1 class="display">Product <em>Detail Page.</em></h1>
+        <p class="project-lede">How we improved Airbnb's <em>Product Detail Page</em> through a number of small iterations over the course of a year.</p>
+      </div>
+
+      <!-- Hero image -->
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-pdp/photos/Airbnb-PDP-Hero.png" alt="Airbnb Product Detail Page" loading="lazy">
+        <figcaption>Design is never done</figcaption>
+      </figure>
+
+      <!-- 02 · Problem -->
+      <div class="section-label"><span class="num">02</span> Context</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>problem.</em></h2>
+          <p>In early 2017, we identified a number of redundancies and inconsistencies, as well as legacy UI, on Airbnb's Product Detail Page (PDP). Our team wanted to test new designs to remove these redundancies, ensure consistency across verticals, and update our front end with our new Design Language System. But how could we update one of Airbnb's most important pages without hurting conversions — or ideally even improve them?</p>
+        </div>
+      </div>
+
+      <!-- 03 · Approach -->
+      <div class="section-label"><span class="num">03</span> Approach</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>The <em>project.</em></h2>
+          <p>After a long audit and brainstorming session, I worked closely with Jonathan Rahmani and the rest of the team, splitting each idea into over 30 small experiments that we would test over the year. The day-to-day progress appeared slow, but with persistence we were able to ship most of the experiments with positive results. After a year of working on the page, the improvement was significant. Here are some of the experiments I worked on.</p>
+        </div>
+      </div>
+
+      <!-- 04 · Experiments -->
+      <div class="section-label"><span class="num">04</span> Experiments</div>
+      <div class="col-body">
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">01</div>
+              <h3 class="step-title">Reducing redundancies</h3>
+            </div>
+            <p>Airbnb's PDP had two "The Space" sections full of redundant content, taking up a lot of precious vertical space and leading to additional information processing for potential guests. I proposed a new simplified design by eliminating redundant content and rearranging the rest into more appropriate sections. I also proposed removing the "About this listing" title and switching the listing description icons for a smaller, bolder set to gain even more vertical space. After many iterations, we launched the experiment with a small improvement in conversions and a considerable reduction of cognitive load.</p>
+            <figure class="compare">
+              <div class="side">
+                <span class="compare-label">Before</span>
+                <img src="/design/project/airbnb-pdp/photos/Description-Before.jpg" alt="PDP description section before redesign" loading="lazy">
+              </div>
+              <div class="side">
+                <span class="compare-label">After</span>
+                <img src="/design/project/airbnb-pdp/photos/Description-After.jpg" alt="PDP description section after redesign" loading="lazy">
+              </div>
+              <figcaption>Reducing redundancy</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">02</div>
+              <h3 class="step-title">Sleeping arrangements</h3>
+            </div>
+            <p>The research team showed us guests were interested in knowing the bed size and distribution, but the relevant information was too far down the page and unnoticeable. We tested highlighting the sleeping arrangement section with a new design to add clarity, and promoted it above the rest of the sections. This change had a direct positive impact on bookings.</p>
+            <figure class="compare">
+              <div class="side">
+                <span class="compare-label">Before</span>
+                <img src="/design/project/airbnb-pdp/photos/Sleeping-Before.jpg" alt="Sleeping arrangements before redesign" loading="lazy">
+              </div>
+              <div class="side">
+                <span class="compare-label">After</span>
+                <img src="/design/project/airbnb-pdp/photos/Sleeping-After.jpg" alt="Sleeping arrangements after redesign" loading="lazy">
+              </div>
+              <figcaption>Sleeping arrangements</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">03</div>
+              <h3 class="step-title">Map size</h3>
+            </div>
+            <p>Location context is a key feature on Airbnb's PDP, but before, there was a huge map at the bottom of the page blocking the booking component further down. The hypothesis we tested was that we could reduce the map size without affecting the experience or conversions — allowing the booking component to remain in the sidebar. The experiment was successful and we launched it to the whole user base.</p>
+            <figure class="compare">
+              <div class="side">
+                <span class="compare-label">Before</span>
+                <img src="/design/project/airbnb-pdp/photos/Map-Before.jpg" alt="Map size before redesign" loading="lazy">
+              </div>
+              <div class="side">
+                <span class="compare-label">After</span>
+                <img src="/design/project/airbnb-pdp/photos/Map-After.jpg" alt="Map size after redesign" loading="lazy">
+              </div>
+              <figcaption>Map size</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">04</div>
+              <h3 class="step-title">Booking component</h3>
+            </div>
+            <p>The booking component — a critical piece of Airbnb's PDP — used legacy UI components. I proposed a new design using components and style guidelines from our Design Language System. After a number of iterations and tests, we successfully launched it to 100% of the user base. This change improved visual quality, brought consistency, and updated the technology behind each component.</p>
+            <figure class="compare">
+              <div class="side">
+                <span class="compare-label">Before</span>
+                <img src="/design/project/airbnb-pdp/photos/Book-Before.jpg" alt="Booking component before redesign" loading="lazy">
+              </div>
+              <div class="side">
+                <span class="compare-label">After</span>
+                <img src="/design/project/airbnb-pdp/photos/Book-After.jpg" alt="Booking component after redesign" loading="lazy">
+              </div>
+              <figcaption>Booking component</figcaption>
+            </figure>
+          </article>
+
+          <article class="step">
+            <div class="step-head">
+              <div class="step-num">05</div>
+              <h3 class="step-title">Share &amp; save</h3>
+            </div>
+            <p>Guests were having issues accessing the share and save buttons on screens with a low height. I proposed a new design to elevate these two actions and achieve consistency with how our native apps work. The experiment was a big success: guests started sharing and saving more homes.</p>
+            <figure class="compare">
+              <div class="side">
+                <span class="compare-label">Before</span>
+                <img src="/design/project/airbnb-pdp/photos/Share-Save-Before.jpg" alt="Share and save before redesign" loading="lazy">
+              </div>
+              <div class="side">
+                <span class="compare-label">After</span>
+                <img src="/design/project/airbnb-pdp/photos/Share-Save-After.jpg" alt="Share and save after redesign" loading="lazy">
+              </div>
+              <figcaption>Share &amp; save</figcaption>
+            </figure>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 05 · Wrap up -->
+      <div class="section-label"><span class="num">05</span> Wrap up</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>A year <em>later.</em></h2>
+          <p>Stepping back and comparing the page before and after a year of compounding iterations, the impact of many small, well-tested bets becomes clear.</p>
+        </div>
+      </div>
+
+      <figure class="figure-band">
+        <img src="/design/project/airbnb-pdp/photos/Airbnb-PDP-2017-vs-2018.jpg" alt="Airbnb PDP 2017 vs 2018" loading="lazy">
+        <figcaption>Airbnb PDP — 2017 vs 2018</figcaption>
+      </figure>
+
+      <!-- 06 · Peer quote -->
+      <div class="section-label"><span class="num">06</span> Words from peers</div>
+      <div class="col-body">
+        <blockquote class="quote">
+          I am always so impressed with how quickly Wiki is able to complete last-minute design requests. Not only is he fast, but he delivers high-quality designs as well. This is super important for an engineer, because most of the time an edge case will pop up and the design has to be tweaked to accommodate it. Wiki always understands the situation immediately, and always has a solution ready for it.
+          <span class="quote-attr">— Former Airbnb engineer</span>
+        </blockquote>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
