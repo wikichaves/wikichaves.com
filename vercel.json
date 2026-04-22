@@ -1,6 +1,32 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/project", "destination": "/design/projects", "permanent": true },
+    { "source": "/project/netflix-design-system", "destination": "/design/projects/netflix-design-system", "permanent": true },
+    { "source": "/project/airbnb-pdp", "destination": "/design/projects/airbnb-pdp", "permanent": true },
+    { "source": "/project/airbnb-cards", "destination": "/design/projects/airbnb-cards", "permanent": true },
+    { "source": "/project/xapo", "destination": "/design/projects/xapo", "permanent": true },
+    { "source": "/project/lemon-wallet", "destination": "/design/projects/lemon-wallet", "permanent": true },
+
+    { "source": "/talk", "destination": "https://calendly.com/wikichaves/chat", "permanent": true },
+    { "source": "/chat", "destination": "https://calendly.com/wikichaves/chat", "permanent": true },
+    { "source": "/listen", "destination": "https://hyperfollow.com/wikichaves", "permanent": true },
+    { "source": "/play", "destination": "https://hyperfollow.com/wikichaves", "permanent": true },
+    { "source": "/spotify", "destination": "https://open.spotify.com/artist/2rVBlYvPd3BBl4qQsCWS0N", "permanent": true },
+    { "source": "/applemusic", "destination": "https://music.apple.com/us/artist/wiki-chaves/1228267110", "permanent": true },
+    { "source": "/portfolio", "destination": "/design", "permanent": true },
+    { "source": "/andante", "destination": "https://distrokid.com/hyperfollow/wikichaves/cYPs", "permanent": true },
+    { "source": "/camino", "destination": "https://distrokid.com/hyperfollow/wikichaves/bnNw", "permanent": true },
+    { "source": "/bangkok", "destination": "https://distrokid.com/hyperfollow/wikichaves/eqdQ", "permanent": true },
+    { "source": "/pocket1", "destination": "https://distrokid.com/hyperfollow/wikichaves/eqdQ", "permanent": true },
+    { "source": "/solsticio", "destination": "https://distrokid.com/hyperfollow/wikichaves/solsticio", "permanent": true },
+    { "source": "/raiz", "destination": "https://distrokid.com/hyperfollow/wikichaves/raz", "permanent": true },
+    { "source": "/live", "destination": "https://photos.app.goo.gl/nWo8AGzuNc5HP23j9", "permanent": true },
+    { "source": "/press", "destination": "https://www.dropbox.com/scl/fo/cs2romxmgxx0lny7fetro/ALmsP5YkVY5vWsIwtVaurIo?rlkey=fv3ony8lay97dvwl2a1yqmymp&e=1&st=zp1252uc&dl=0", "permanent": true },
+    { "source": "/resume", "destination": "https://docs.google.com/document/d/1qO0m7jLfsY6Ej2YVrIog_jtxSNIgfxgAD560pTN93HM/edit?usp=sharing", "permanent": true },
+    { "source": "/covers", "destination": "https://soundcloud.com/wikichaves/sets/covers/s-VAsQOIGBLuU?si=cb4772a44d56425ba2b952defbf71b5d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/music/audio/(.*)",
