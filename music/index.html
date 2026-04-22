@@ -61,10 +61,11 @@
     display: inline-flex; align-items: center; gap: 10px;
     color: var(--ink);
   }
-  .nav-mark .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 14px var(--accent);
+  .nav-mark .mark {
+    width: 18px; height: 18px;
+    display: block;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.35));
   }
   .nav-links { display: flex; gap: 32px; }
   .nav-links a { position: relative; padding: 4px 0; transition: color .2s; }
@@ -670,7 +671,7 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-mark"><span class="dot"></span> Wiki Chaves</a>
+    <a href="/" class="nav-mark"><img class="mark" src="../favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
       <a href="/design">Design</a>
       <a href="/music" class="active">Music</a>
@@ -728,7 +729,7 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Made slowly in Uruguay</span>
+    <span>© Wiki Chaves · Based in Uruguay</span>
     <nav>
       <a href="/">Home</a>
       <a href="/design">Design</a>
