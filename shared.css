@@ -33,7 +33,7 @@ html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
 body {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -159,6 +159,13 @@ main { flex: 1; width: 100%; }
 .foot-meta nav { display: flex; gap: 24px; }
 .foot-meta nav a { color: var(--ink-dim); transition: color .2s; }
 .foot-meta nav a:hover { color: var(--accent); }
+.foot-meta .contact-link {
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color .2s;
+  cursor: pointer;
+}
+.foot-meta .contact-link:hover { color: var(--accent); }
 
 /* ----------- RESPONSIVE ----------- */
 @media (max-width: 900px) {

@@ -1,6 +1,10 @@
 <!DOCTYPE html><html lang="en"><head>
 
 
+
+
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wiki Chaves — Design</title>
@@ -114,8 +118,8 @@
   <div class="nav-inner">
     <a href="/" class="nav-mark"><img class="mark" src="../favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
-      <a href="/design" class="active">Design</a>
       <a href="/music">Music</a>
+      <a href="/design" class="active">Design</a>
     </div>
   </div>
 </nav>
@@ -125,9 +129,9 @@
     <section class="page">
       <div class="section-label"><span class="num">01</span> Design</div>
       <div class="col-body">
-        <h1 class="display">Product Designer.</h1>
+        <h1 class="display">Software as a <em>craft.</em></h1>
 
-        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies such as Netflix, Airbnb, Meta, and Mercado Libre. My passion lies in transforming concepts into tangible, impactful products.</p>
+        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies.</p>
 
         <details class="more">
           <summary><span class="open">Read more</span><span class="close">Read less</span></summary>
@@ -156,7 +160,7 @@
       <div class="section-label" data-cc-id="cc-3" style=""><span class="num">02</span>&nbsp;experience</div>
       <div class="col-body">
         <div class="logos">
-          <span class="logo" data-cc-id="cc-2" style="">Xapo</span>
+          <span class="logo" data-cc-id="cc-2" style="">Xapo Bank</span>
           <span class="logo">Airbnb</span>
           <span class="logo">Netflix</span>
           <span class="logo">Meta</span>
@@ -168,7 +172,7 @@
       <div class="col-body">
         <div class="link-list">
           <a href="https://www.linkedin.com/in/wikichaves/" target="_blank" rel="noopener" class="ext">LinkedIn</a>
-          <a href="https://dribbble.com/" target="_blank" rel="noopener" class="ext">Dribbble</a>
+          <a href="https://dribbble.com/wikichaves" target="_blank" rel="noopener" class="ext">Dribbble</a>
         </div>
       </div>
     </section>
@@ -177,13 +181,21 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Based in Uruguay</span>
-    <nav>
-      <a href="/design">Design</a>
-      <a href="/music">Music</a>
-    </nav>
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
   </div>
 </footer>
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
 
 
 

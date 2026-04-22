@@ -50,14 +50,14 @@
   .eyebrow .line { width: 32px; height: 1px; background: var(--ink-faint); }
 </style>
 </head>
-<body data-cc-id="cc-1" style="cursor: crosshair;">
+<body>
 
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-mark"><img class="mark" src="favicon.svg" alt=""> Wiki Chaves</a>
     <div class="nav-links">
-      <a href="/design">Design</a>
       <a href="/music">Music</a>
+      <a href="/design">Design</a>
     </div>
   </div>
 </nav>
@@ -65,13 +65,13 @@
 <main>
   <div class="wrap">
     <section class="hero">
-      <div class="eyebrow"><span class="line"></span> Uruguay</div>
+      <div class="eyebrow"><span class="line"></span> Based in Uruguay</div>
       <h1 class="display">Designer &amp; <em>musician.</em></h1>
       <p class="lede">I make instrumental records and design software.</p>
       <p class="aside"><em>Lately, also building <a href="https://casabosquemontoya.com/" target="_blank" rel="noopener">cabins in the woods</a>.</em></p>
       <div class="link-list">
-        <a href="/design">Design</a>
         <a href="/music">Music</a>
+        <a href="/design">Design</a>
       </div>
     </section>
   </div>
@@ -79,13 +79,21 @@
 
 <footer class="foot">
   <div class="foot-meta">
-    <span>© Wiki Chaves · Based in Uruguay</span>
-    <nav>
-      <a href="/design">Design</a>
-      <a href="/music">Music</a>
-    </nav>
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="d2lraWNoYXZlcw==" data-d="Z21haWwuY29t">Contact</a>
   </div>
 </footer>
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:' + email;
+      });
+    });
+  })();
+</script>
 
 
 
