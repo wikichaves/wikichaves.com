@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/about", "destination": "/", "permanent": true },
+
     { "source": "/project", "destination": "/design/projects", "permanent": true },
     { "source": "/project/netflix-design-system", "destination": "/design/projects/netflix-design-system", "permanent": true },
     { "source": "/project/airbnb-pdp", "destination": "/design/projects/airbnb-pdp", "permanent": true },
