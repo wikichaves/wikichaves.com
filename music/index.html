@@ -32,7 +32,7 @@
     --ink-faint:  #5a574f;
     --rule:       #23231f;
     --rule-2:     #2d2c27;
-    --accent:     #d9a441;   /* amber — shared across wikichaves.com */
+    --accent:     #a8c940;   /* olive — shared across wikichaves.com */
     --accent-ink: #0d0d0e;
     --serif: "Source Serif 4", "Tiempos Text", Georgia, serif;
     --sans:  "Inter", system-ui, sans-serif;
@@ -79,7 +79,7 @@
     width: 18px; height: 18px;
     display: block;
     flex-shrink: 0;
-    filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.35));
+    filter: drop-shadow(0 0 10px rgba(168, 201, 64, 0.35));
   }
   .nav-links { display: flex; gap: 32px; }
   .nav-links a { position: relative; padding: 4px 0; transition: color .2s; }
@@ -500,7 +500,6 @@
   .press {
     max-width: 1240px; margin: 0 auto;
     padding: 96px 48px;
-    border-bottom: 1px solid var(--rule);
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     gap: 80px;
@@ -609,7 +608,7 @@
   /* ------- FOOTER ------- */
   .foot {
     max-width: 1240px; margin: 0 auto;
-    padding: 96px 48px 48px;
+    padding: 72px 48px 48px;
   }
   .foot-meta {
     display: flex; justify-content: space-between; align-items: center;
@@ -931,12 +930,12 @@
 
 <script>
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "#d9a441"
+  "accent": "#a8c940"
 }/*EDITMODE-END*/;
 
 const ACCENTS = [
   { name: "Coral",    hex: "#e07a5f" },
-  { name: "Saffron",  hex: "#d9a441" },
+  { name: "Olive",    hex: "#a8c940" },
   { name: "Sage",     hex: "#8aa687" },
   { name: "Fog",      hex: "#9aa5b1" },
   { name: "Rose",     hex: "#c97b8c" },

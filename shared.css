@@ -13,7 +13,7 @@
   --ink-faint:  #5a574f;
   --rule:       #23231f;
   --rule-2:     #2d2c27;
-  --accent:     #d9a441;
+  --accent:     #a8c940;
   --accent-ink: #0d0d0e;
 
   /* type */
@@ -69,7 +69,7 @@ a { color: inherit; text-decoration: none; }
   width: 18px; height: 18px;
   display: block;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.35));
+  filter: drop-shadow(0 0 10px rgba(168, 201, 64, 0.35));
 }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a { position: relative; padding: 4px 0; transition: color .2s; }
