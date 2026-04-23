@@ -41,6 +41,34 @@
   .page .display { margin: 0 0 40px; }
   .page .lede { margin-bottom: 24px; }
 
+  .cta-row {
+    margin: 0 0 72px;
+    line-height: 1.65;
+  }
+  .cta-row details.more {
+    display: inline-block;
+    margin: 0;
+    vertical-align: baseline;
+    max-width: 620px;
+  }
+  .cta-row .cta-link {
+    vertical-align: baseline;
+    margin-left: 28px;
+  }
+  .cta-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule-2);
+    display: inline-block;
+    transition: border-color .25s, color .25s;
+  }
+  .cta-link:hover { border-bottom-color: var(--accent); }
+  .cta-link::after { content: "  →"; color: var(--ink-faint); }
+
   details.more { margin: 0 0 72px; max-width: 620px; }
   details.more summary {
     list-style: none;
@@ -147,6 +175,7 @@
 
         <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies.</p>
 
+        <div class="cta-row">
         <details class="more">
           <summary><span class="open">Read more</span><span class="close">Read less</span></summary>
           <div class="more-body">
@@ -169,6 +198,8 @@
             <p>Today I'm working independently — open to contract and freelance projects in Product Design, Design Systems, and Product Marketing.</p>
           </div>
         </details>
+        <a href="/design/projects" class="cta-link">Projects</a>
+        </div>
       </div>
 
       <div class="section-label" data-cc-id="cc-3" style=""><span class="num">02</span>&nbsp;experience</div>
@@ -182,16 +213,7 @@
         </div>
       </div>
 
-      <div class="section-label"><span class="num">03</span> Links</div>
-      <div class="col-body">
-        <div class="link-list">
-          <a href="/design/projects">Projects</a>
-          <a href="https://www.linkedin.com/in/wikichaves/" target="_blank" rel="noopener" class="ext">LinkedIn</a>
-          <a href="https://dribbble.com/wikichaves" target="_blank" rel="noopener" class="ext">Dribbble</a>
-        </div>
-      </div>
-
-      <div class="section-label"><span class="num">04</span> Press</div>
+      <div class="section-label"><span class="num">03</span> Press</div>
       <div class="col-body">
         <ul class="press-list">
           <li>
@@ -222,6 +244,15 @@
             </a>
           </li>
         </ul>
+      </div>
+
+      <div class="section-label"><span class="num">04</span> Links</div>
+      <div class="col-body">
+        <div class="link-list">
+          <a href="https://www.linkedin.com/in/wikichaves/" target="_blank" rel="noopener" class="ext">LinkedIn</a>
+          <a href="https://github.com/wikichaves/" target="_blank" rel="noopener" class="ext">GitHub</a>
+          <a href="https://dribbble.com/wikichaves" target="_blank" rel="noopener" class="ext">Dribbble</a>
+        </div>
       </div>
     </section>
   </div>
