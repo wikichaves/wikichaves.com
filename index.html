@@ -100,11 +100,7 @@
 <script>
   (function(){
     document.querySelectorAll('.contact-link').forEach(function(a){
-      var email = atob(a.dataset.u) + '@' + atob(a.dataset.d);
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        window.location.href = 'mailto:' + email;
-      });
+      a.href = 'mailto:' + atob(a.dataset.u) + '@' + atob(a.dataset.d);
     });
   })();
 </script>
