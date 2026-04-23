@@ -825,11 +825,11 @@
       </figcaption>
     </figure>
 
-    <p>I started playing guitar as a teenager in my hometown, Buenos Aires. I grew up covering grunge, punk, and hard rock classics with close friends in my parents' garage. In the early 2000s I formed the indie rock band <a href="#">Olaguer</a> and launched an EP — heavily influenced by the local Sónico movement led by bands like Soda Stereo, Babasónicos, and Los Brujos.</p>
+    <p>I started playing guitar as a teenager in my hometown, Buenos Aires. I grew up covering grunge, punk, and hard rock classics with close friends in my parents' garage. In the early 2000s I formed the indie rock band <a href="https://open.spotify.com/artist/4JvHFSGqqBR5YzEQmeC60w?si=I73hJ9nDRJGK5aJqwbxKtQ">Olaguer</a> and launched an EP — heavily influenced by the local Sónico movement led by bands like Soda Stereo, Babasónicos, and Los Brujos.</p>
 
-    <p>After finishing school and a long trip around South America, I was deeply touched by the continent's music and organic field-recorded sounds. When I returned home I studied classical guitar and charango, which led me down the path of becoming a solo recording artist.</p>
+    <p>After finishing school and a long trip around South America, I was deeply touched by the continent's music and organic field-recorded sounds. When I returned home I studied classical guitar and charango.</p>
 
-    <p>In 2011 I moved to California and began listening to and experimenting with electronic music. Since 2025 I live in La Barra, Uruguay.</p>
+    <p>In 2011 I moved to California and began listening to and experimenting with electronic. The mix of my influences converged into my solo project, which you can check out right here.</p>
   </div>
 </section>
 
@@ -956,10 +956,10 @@ const RELEASES = [
     cover: "/music/covers/camino.jpg",
     tracks: [
       { n: 1, title: "Carnaval", audio: "/music/audio/camino/01-carnaval.mp3" },
-      { n: 2, title: "Mantra",   audio: "/music/audio/camino/02-mantra.mp3" },
+      { n: 2, title: "Siesta",   audio: "/music/audio/camino/04-siesta.mp3" },
       { n: 3, title: "Ruta",     audio: "/music/audio/camino/03-ruta.mp3" },
-      { n: 4, title: "Siesta",   audio: "/music/audio/camino/04-siesta.mp3" },
-      { n: 5, title: "Sol",      audio: "/music/audio/camino/05-sol.mp3" },
+      { n: 4, title: "Sol",      audio: "/music/audio/camino/05-sol.mp3" },
+      { n: 5, title: "Mantra",   audio: "/music/audio/camino/02-mantra.mp3" },
     ],
     note: "My first solo album — an instrumental record inspired by the spirit of a road trip. A blend of traditional Argentine folklore, Andean, electronic and California surf.",
     external: "Spotify",
@@ -975,10 +975,10 @@ const RELEASES = [
     cover: "/music/covers/andante.jpg",
     tracks: [
       { n: 1, title: "Alto",     audio: "/music/audio/andante/01-alto.mp3" },
-      { n: 2, title: "Contacto", audio: "/music/audio/andante/02-contacto.mp3" },
-      { n: 3, title: "Loto",     audio: "/music/audio/andante/03-loto.mp3" },
-      { n: 4, title: "Nocturno", audio: "/music/audio/andante/04-nocturno.mp3" },
-      { n: 5, title: "Tribal",   audio: "/music/audio/andante/05-tribal.mp3" },
+      { n: 2, title: "Tribal",   audio: "/music/audio/andante/05-tribal.mp3" },
+      { n: 3, title: "Nocturno", audio: "/music/audio/andante/04-nocturno.mp3" },
+      { n: 4, title: "Loto",     audio: "/music/audio/andante/03-loto.mp3" },
+      { n: 5, title: "Contacto", audio: "/music/audio/andante/02-contacto.mp3" },
     ],
     note: "A continuation of the first record, more guitar-centric. Latin American cumbia, ambient techno, downtempo electronic, and melodically-driven riffs.",
     external: "Spotify",
@@ -1032,11 +1032,11 @@ const RELEASES = [
       { n: 1,  title: "Taking Off",  audio: "/music/audio/solsticio/01-taking-off.mp3" },
       { n: 2,  title: "Shinkansen",  audio: "/music/audio/solsticio/02-shinkansen.mp3" },
       { n: 3,  title: "Kecak",       audio: "/music/audio/solsticio/03-kecak.mp3" },
-      { n: 4,  title: "Lombok",      audio: "/music/audio/solsticio/04-lombok.mp3" },
-      { n: 5,  title: "Yuli's",      audio: "/music/audio/solsticio/05-yulis.mp3" },
+      { n: 4,  title: "Gerupuk",     audio: "/music/audio/solsticio/04-gerupuk.mp3" },
+      { n: 5,  title: "Yuli's Homestay",      audio: "/music/audio/solsticio/05-yulis.mp3" },
       { n: 6,  title: "Siargao",     audio: "/music/audio/solsticio/06-siargao.mp3" },
       { n: 7,  title: "Rishikesh",   audio: "/music/audio/solsticio/07-rishikesh.mp3" },
-      { n: 8,  title: "Ella",        audio: "/music/audio/solsticio/08-ella.mp3" },
+      { n: 8,  title: "Hoppers and Tea", audio: "/music/audio/solsticio/08-hoppers-and-tea.mp3" },
       { n: 9,  title: "Waves",       audio: "/music/audio/solsticio/09-waves.mp3" },
       { n: 10, title: "Torquay",     audio: "/music/audio/solsticio/10-torquay.mp3" },
     ],
@@ -1103,7 +1103,7 @@ const LISTEN = [
 
 /* ------------- RENDER ------------- */
 const timeline = document.getElementById('timeline');
-const RENDERED = [...RELEASES].reverse();
+const RENDERED = [...RELEASES];
 RENDERED.forEach((r, i) => {
   const origIdx = RELEASES.indexOf(r);
   const el = document.createElement('article');
