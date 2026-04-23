@@ -39,21 +39,17 @@
   .page .section-label { padding-top: 8px; }
   .page .col-body { min-width: 0; max-width: 720px; }
   .page .display { margin: 0 0 40px; }
-  .page .lede { margin-bottom: 24px; }
+  .page .lede { margin-bottom: 8px; }
 
   .cta-row {
     margin: 0 0 72px;
-    line-height: 1.65;
   }
   .cta-row details.more {
-    display: inline-block;
-    margin: 0;
-    vertical-align: baseline;
+    margin: 0 0 20px;
     max-width: 620px;
   }
   .cta-row .cta-link {
-    vertical-align: baseline;
-    margin-left: 28px;
+    display: inline-block;
   }
   .cta-link {
     font-family: var(--mono);
@@ -74,16 +70,15 @@
     list-style: none;
     cursor: pointer;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent);
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--rule-2);
+    color: var(--ink-dim);
+    padding: 4px 0;
     display: inline-block;
-    transition: border-color .25s, color .25s;
+    transition: color .25s;
   }
-  details.more summary:hover { border-bottom-color: var(--accent); }
+  details.more summary:hover { color: var(--ink); }
   details.more summary::-webkit-details-marker { display: none; }
   details.more summary .close { display: none; }
 
