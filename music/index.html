@@ -135,6 +135,53 @@
     font-weight: 300;
     padding-bottom: 10px;
   }
+  .featured {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 32px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .featured-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .featured-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--ink);
+    transition: color .2s;
+  }
+  .featured-title em { font-style: italic; color: var(--accent); }
+  .featured-play-icon {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--ink-dim);
+    color: var(--ink-dim);
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .featured:hover .featured-play-icon {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
   .hero-meta {
     font-family: var(--mono);
     font-size: 11px;
@@ -700,16 +747,32 @@
     display: flex; gap: 12px;
   }
   .player-progress {
-    margin-top: 8px;
-    height: 2px; background: var(--rule-2); border-radius: 2px;
-    position: relative; overflow: hidden;
+    margin-top: 2px;
+    height: 14px;
+    padding: 6px 0;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .player-progress::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 2px; margin-top: -1px;
+    background: var(--rule-2);
+    border-radius: 2px;
   }
   .player-progress-bar {
-    position: absolute; left: 0; top: 0; bottom: 0;
+    position: absolute;
+    left: 0; top: 50%;
+    height: 2px; margin-top: -1px;
     background: var(--accent);
     width: 0%;
-    transition: width 0.3s linear;
+    border-radius: 2px;
+    transition: width 0.15s linear;
   }
+  .player-progress.seeking .player-progress-bar { transition: none; }
 
   .player-controls { display: flex; align-items: center; gap: 4px; }
   .player-btn {
@@ -814,6 +877,15 @@
     <div class="lede">
       A quiet catalog of instrumental records made around the world, tracing a decade of guitars, field recordings, and soft electronics.
     </div>
+    <button type="button" class="featured" data-release-id="raiz" aria-label="Play Raíz">
+      <span class="featured-eyebrow">Featured album</span>
+      <span class="featured-title">
+        <span class="featured-play-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3.5v13l11-6.5z"/></svg>
+        </span>
+        <em>Raíz</em>
+      </span>
+    </button>
   </aside>
 </header>
 
@@ -1389,14 +1461,41 @@ audioEl.addEventListener('loadedmetadata', () => { updateTime(); updateBar(); })
 audioEl.addEventListener('ended', () => { next(); });
 audioEl.addEventListener('pause', () => { if (playing) { playing = false; playIcon.innerHTML = PLAY_SVG; refreshLabels(); refreshTrackRows(); } });
 
-// click on progress bar to seek
-document.querySelector('.player-progress').addEventListener('click', (e) => {
-  if (!audioEl.duration) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const ratio = (e.clientX - rect.left) / rect.width;
-  audioEl.currentTime = Math.max(0, Math.min(audioEl.duration, ratio * audioEl.duration));
-});
-document.querySelector('.player-progress').style.cursor = 'pointer';
+// click + drag on progress bar to seek
+(function() {
+  const progress = document.querySelector('.player-progress');
+  if (!progress) return;
+
+  let dragging = false;
+
+  function seekFromEvent(e) {
+    if (!audioEl.duration || !isFinite(audioEl.duration)) return;
+    const rect = progress.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const ratio = Math.max(0, Math.min(1, x / rect.width));
+    audioEl.currentTime = ratio * audioEl.duration;
+    playerBar.style.width = (ratio * 100) + '%';
+  }
+
+  progress.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    progress.classList.add('seeking');
+    progress.setPointerCapture(e.pointerId);
+    seekFromEvent(e);
+  });
+  progress.addEventListener('pointermove', (e) => {
+    if (dragging) seekFromEvent(e);
+  });
+  progress.addEventListener('pointerup', (e) => {
+    dragging = false;
+    progress.classList.remove('seeking');
+    try { progress.releasePointerCapture(e.pointerId); } catch (_) {}
+  });
+  progress.addEventListener('pointercancel', () => {
+    dragging = false;
+    progress.classList.remove('seeking');
+  });
+})();
 
 document.querySelectorAll('.play-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1481,6 +1580,15 @@ tweaksClose.addEventListener('click', () => {
   try { window.parent.postMessage({type:'__edit_mode_deactivate'}, '*'); } catch(e){}
 });
 try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+
+/* featured album button */
+document.querySelectorAll('[data-release-id]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-release-id');
+    const idx = RELEASES.findIndex(r => r.id === id);
+    if (idx >= 0) openPlayer(idx, null, true);
+  });
+});
 </script>
 <script>
   (function(){
