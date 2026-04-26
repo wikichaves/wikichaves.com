@@ -72,6 +72,72 @@
     .hero .display { margin-bottom: 32px; }
     .hero .aside { margin-bottom: 40px; }
   }
+
+  /* Subtle live ambient — sits behind nav, hero, and footer for a continuous read */
+  .live-bg {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 60%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .foot { position: relative; z-index: 1; }
+  .live-bg .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    will-change: transform;
+    mix-blend-mode: screen;
+  }
+  /* Lime-green, biggest, top-right */
+  .live-bg .blob-1 {
+    width: 560px; height: 480px;
+    top: 4%; right: -140px;
+    background: radial-gradient(circle, hsla(75, 60%, 55%, 0.22), hsla(75, 60%, 55%, 0) 70%);
+    animation: drift1 22s ease-in-out infinite;
+  }
+  /* Cooler green, mid-low */
+  .live-bg .blob-2 {
+    width: 440px; height: 440px;
+    bottom: 6%; right: 28%;
+    background: radial-gradient(circle, hsla(95, 45%, 50%, 0.16), hsla(95, 45%, 50%, 0) 70%);
+    animation: drift2 28s ease-in-out infinite;
+  }
+  /* Warm yellow-green, smaller, mid-right */
+  .live-bg .blob-3 {
+    width: 320px; height: 360px;
+    top: 38%; right: 8%;
+    background: radial-gradient(circle, hsla(60, 65%, 60%, 0.14), hsla(60, 65%, 60%, 0) 70%);
+    animation: drift3 34s ease-in-out infinite;
+  }
+  .wrap { position: relative; z-index: 1; }
+
+  @keyframes drift1 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33%  { transform: translate(-50px, 70px) scale(1.1) rotate(15deg); }
+    66%  { transform: translate(40px, 30px) scale(0.95) rotate(-10deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+  @keyframes drift2 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33%  { transform: translate(60px, -50px) scale(1.05) rotate(-12deg); }
+    66%  { transform: translate(-30px, -80px) scale(0.92) rotate(18deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+  @keyframes drift3 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33%  { transform: translate(-40px, -40px) scale(1.12) rotate(20deg); }
+    66%  { transform: translate(50px, 40px) scale(0.9) rotate(-15deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+
+  @media (max-width: 900px) {
+    .live-bg { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .live-bg .blob { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -87,6 +153,11 @@
 </nav>
 
 <main>
+  <div class="live-bg" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
   <div class="wrap">
     <section class="hero">
       <div class="eyebrow"><span class="line"></span> Based in Uruguay</div>
