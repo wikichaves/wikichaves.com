@@ -714,23 +714,6 @@
   }
   .player.open { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-  .player-close {
-    position: absolute;
-    top: -8px; right: -8px;
-    width: 22px; height: 22px;
-    border: 1px solid var(--rule-2);
-    background: rgba(20,20,22,0.95);
-    color: var(--ink-dim);
-    cursor: pointer;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    padding: 0;
-    transition: color .2s, border-color .2s, transform .2s;
-  }
-  .player-close:hover { color: var(--ink); border-color: var(--ink-dim); transform: scale(1.08); }
-  .player-close svg { width: 8px; height: 8px; }
-
   .player-art {
     width: 44px; height: 44px;
     background: var(--bg-3);
@@ -998,9 +981,6 @@
 
 <!-- PERSISTENT MINI PLAYER -->
 <div class="player" id="player" aria-hidden="true">
-  <button class="player-close" id="player-close" aria-label="Close player" type="button">
-    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 2l6 6M8 2l-6 6"/></svg>
-  </button>
   <div class="player-art" id="player-art"><span class="pulse"></span></div>
   <div class="player-info">
     <div class="player-title" id="player-title">—</div>
@@ -1285,7 +1265,6 @@ const player = document.getElementById('player');
 const playerTitle = document.getElementById('player-title');
 const playerTime  = document.getElementById('player-time');
 const playerBar   = document.getElementById('player-bar');
-const playerClose = document.getElementById('player-close');
 const playIcon    = document.getElementById('play-icon');
 const playBtn     = document.getElementById('play-btn');
 const prevBtn     = document.getElementById('prev-btn');
@@ -1326,7 +1305,7 @@ function activeSrc() {
 function activeTrackTitle() {
   const r = RELEASES[current];
   if (!r) return '';
-  if (r.tracks && currentTrack != null) return `${r.title} — ${r.tracks[currentTrack].title}`;
+  if (r.tracks && currentTrack != null) return r.tracks[currentTrack].title;
   return r.title;
 }
 
@@ -1572,19 +1551,6 @@ document.querySelectorAll('.track-row').forEach(row => {
 playBtn.addEventListener('click', toggle);
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
-
-// Dismiss player: pause and reset session so spacebar goes back to "start
-// featured" mode and release/track UI clears its active state.
-playerClose.addEventListener('click', () => {
-  audioEl.pause();
-  player.classList.remove('open');
-  player.setAttribute('aria-hidden', 'true');
-  current = null;
-  currentTrack = null;
-  document.querySelectorAll('.release.playing').forEach(el => el.classList.remove('playing'));
-  refreshLabels();
-  refreshTrackRows();
-});
 
 // initial label pass
 refreshLabels();
