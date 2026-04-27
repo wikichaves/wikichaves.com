@@ -27,7 +27,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/wikichaves.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=block" rel="stylesheet">
 <link rel="stylesheet" href="../shared.css?v=2">
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -45,14 +45,10 @@
   .page .section-label { padding-top: 8px; }
   .page .col-body { min-width: 0; max-width: 720px; }
   .page .display { margin: 0 0 40px; }
-  .page .lede { margin-bottom: 8px; }
+  .page .lede { margin-bottom: 8px; font-size: 21px; line-height: 32px; }
 
   .cta-row {
     margin: 0 0 72px;
-  }
-  .cta-row details.more {
-    margin: 0 0 20px;
-    max-width: 620px;
   }
   .cta-row .cta-link {
     display: inline-block;
@@ -71,22 +67,23 @@
   .cta-link:hover { border-bottom-color: var(--accent); }
   .cta-link::after { content: "  →"; color: var(--ink-faint); }
 
-  details.more { margin: 0 0 72px; max-width: 620px; }
-  details.more summary {
-    list-style: none;
+  /* Inline "Read more / Read less" toggle that lives at the end of the lede */
+  .lede-more {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
     cursor: pointer;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    padding: 4px 0;
-    display: inline-block;
-    transition: color .25s;
+    font-style: italic;
+    border-bottom: 1px solid var(--rule-2);
+    transition: color .2s, border-color .2s;
   }
-  details.more summary:hover { color: var(--ink); }
-  details.more summary::-webkit-details-marker { display: none; }
-  details.more summary .close { display: none; }
+  .lede-more:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .lede-more .close { display: none; }
+  .lede-more[aria-expanded="true"] .open { display: none; }
+  .lede-more[aria-expanded="true"] .close { display: inline; }
 
   .inline-photo {
     margin: 32px 0;
@@ -107,16 +104,20 @@
     color: var(--ink-dim);
     margin-top: 12px;
   }
-  details.more[open] summary .open { display: none; }
-  details.more[open] summary .close { display: inline; }
-  details.more summary::after { content: "  ↓"; color: var(--ink-faint); }
-  details.more[open] summary::after { content: "  ↑"; }
+  .inline-photo figcaption a {
+    color: inherit;
+    border-bottom: 1px solid var(--rule-2);
+    transition: color .2s, border-color .2s;
+  }
+  .inline-photo figcaption a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .more-body {
     margin-top: 28px;
     padding-top: 24px;
     border-top: 1px solid var(--rule);
     animation: fade .4s ease;
+    max-width: 620px;
   }
+  .more-body[hidden] { display: none; }
   .more-body p {
     font-family: var(--serif);
     font-size: 17px;
@@ -180,18 +181,16 @@
       <div class="col-body">
         <h1 class="display">Software as a <em>craft.</em></h1>
 
-        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies.</p>
+        <p class="lede">With more than two decades of experience as a Product Designer, my recent years have been dedicated to contributing my skills to renowned tech companies. <button type="button" class="lede-more" aria-expanded="false" aria-controls="bio-extended"><span class="open">Read more</span><span class="close">Read less</span></button></p>
 
         <div class="cta-row">
-        <details class="more">
-          <summary><span class="open">Read more</span><span class="close">Read less</span></summary>
-          <div class="more-body">
+          <div id="bio-extended" class="more-body" hidden>
             <p>I designed my first website in 1996 — a fan page, weeks after my father first showed me the internet. I was 16. After high school I studied Image and Sound Design at the <a href="https://www.uba.ar/" target="_blank" rel="noopener"><em>University of Buenos Aires</em></a>.</p>
             <p>My first job was as the audiovisual guy at a school — connecting TVs, projectors, and sound systems — while also building the school's website. On the side I freelanced for friends and family who wanted an online presence.</p>
             <p>In 2006 I joined <a href="https://www.lenovo.com/" target="_blank" rel="noopener"><em>Lenovo</em></a>'s local branch in Buenos Aires — my first leadership role, running a team of six designers producing homepage graphics, banners, and email marketing for clients across the US, Canada, and Latin America.</p>
-            <p>Through the rest of the 2000s I was Art Director at several agencies, designing and coordinating campaign websites for brands like <a href="https://www.hp.com/" target="_blank" rel="noopener"><em>Hewlett Packard</em></a>, <a href="https://us.pg.com/" target="_blank" rel="noopener"><em>Procter &amp; Gamble</em></a>, <a href="https://www.volkswagen.com/" target="_blank" rel="noopener"><em>Volkswagen</em></a>, and <a href="https://www.intel.com/" target="_blank" rel="noopener"><em>Intel</em></a>.</p>
+            <p>Through the rest of the 2000s I was Art Director at several agencies, designing and coordinating campaign websites for brands like Hewlett Packard, Procter &amp; Gamble, Volkswagen, and Intel.</p>
 
-            <p>In early 2011 I found an ad for Wences Casares' next startup in Palo Alto. Several interviews and two design exercises later, I got the job and moved to California to start <a href="/design/projects/lemon-wallet"><em>Lemon Wallet</em></a> — living the full startup cycle over two and a half years: product, brand, launch, pivot, product-market fit, and acquisition in December 2013.</p>
+            <p>In early 2011 I found an ad for Wences Casares' next startup in Palo Alto. Several interviews and two design exercises later, I got the job and moved to California to start <a href="https://en.wikipedia.org/wiki/Lemon_Wallet" target="_blank" rel="noopener"><em>Lemon Wallet</em></a> — living the full startup cycle over two and a half years: product, brand, launch, pivot, product-market fit, and acquisition in December 2013.</p>
             <p>In 2014 I joined <a href="https://www.xapobank.com/" target="_blank" rel="noopener"><em>Xapo</em></a> as Head of Design, leading product and marketing. The challenge was huge — building on top of bitcoin, an emerging technology, and communicating it to the market. Within months we positioned Xapo as the most secure bitcoin wallet in the world.</p>
 
             <figure class="inline-photo">
@@ -200,16 +199,15 @@
                 <source srcset="/design/photos/aerolab-office-sf.webp" type="image/webp">
                 <img src="/design/photos/aerolab-office-sf.jpg" alt="Aerolab's San Francisco office" loading="lazy">
               </picture>
-              <figcaption>Aerolab's office in San Francisco, 2015 · Photo by Agustina Perretta</figcaption>
+              <figcaption>Aerolab's office in San Francisco, 2015 · Photo by <a href="https://agustinaperretta.com/" target="_blank" rel="noopener">Agustina Perretta</a></figcaption>
             </figure>
 
             <p>In 2015 I partnered with <a href="https://aerolab.co/" target="_blank" rel="noopener"><em>Aerolab</em></a>, one of the best product design agencies in Argentina, to open an office in San Francisco — finding leads in the Bay Area and delivering with the team in Buenos Aires.</p>
             <p>In 2016 I started at <a href="https://www.airbnb.com/" target="_blank" rel="noopener"><em>Airbnb</em></a> on the Search team, helping guests make better decisions when booking a home — listing cards redesign, product detail page optimization, and urgency and commitment messages.</p>
             <p>In 2020 I joined <a href="https://www.netflix.com/" target="_blank" rel="noopener"><em>Netflix</em></a> on the Design System team, creating and maintaining components for Hawkins Professional, the system behind Netflix's internal tools.</p>
-            <p>For the last four years I've been working independently with companies like <a href="https://www.meta.com/" target="_blank" rel="noopener"><em>Meta</em></a>, <a href="https://www.mercadolibre.com/" target="_blank" rel="noopener"><em>Mercado Libre</em></a>, <a href="https://pachama.com/" target="_blank" rel="noopener"><em>Pachama</em></a>, <a href="https://www.luxurypresence.com/" target="_blank" rel="noopener"><em>Luxury Presence</em></a>, <a href="https://www.possiblefinance.com/" target="_blank" rel="noopener"><em>Possible Finance</em></a>, and <em>Collate</em>.</p>
+            <p>For the last four years I've been working independently with companies like <a href="https://www.meta.com/" target="_blank" rel="noopener"><em>Meta</em></a>, <a href="https://www.mercadolibre.com/" target="_blank" rel="noopener"><em>Mercado Libre</em></a>, <a href="https://pachama.com/" target="_blank" rel="noopener"><em>Pachama</em></a>, <a href="https://www.luxurypresence.com/" target="_blank" rel="noopener"><em>Luxury Presence</em></a>, <a href="https://www.possiblefinance.com/" target="_blank" rel="noopener"><em>Possible Finance</em></a>, and <a href="https://collate.com/" target="_blank" rel="noopener"><em>Collate</em></a>.</p>
           </div>
-        </details>
-        <a href="/design/projects" class="cta-link">Projects</a>
+          <a href="/design/projects" class="cta-link">Projects</a>
         </div>
       </div>
 
@@ -281,6 +279,18 @@
     document.querySelectorAll('.contact-link').forEach(function(a){
       a.href = 'mailto:' + atob(a.dataset.u) + '@' + atob(a.dataset.d);
     });
+
+    // Inline "Read more / Read less" toggle for the design bio
+    var ledeMore = document.querySelector('.lede-more');
+    var bioExtended = document.getElementById('bio-extended');
+    if (ledeMore && bioExtended) {
+      ledeMore.addEventListener('click', function(){
+        var open = ledeMore.getAttribute('aria-expanded') === 'true';
+        ledeMore.setAttribute('aria-expanded', String(!open));
+        if (open) bioExtended.setAttribute('hidden', '');
+        else bioExtended.removeAttribute('hidden');
+      });
+    }
   })();
 </script>
 
