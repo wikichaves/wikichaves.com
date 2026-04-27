@@ -1613,7 +1613,9 @@ try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e)
   }
 
   function refreshFeaturedIcon() {
-    const isThisPlaying = isFeaturedActive() && playing;
+    // Use audioEl.paused (the actual audio state) instead of the `playing`
+    // global, which lags behind because it's set inside an async .then().
+    const isThisPlaying = isFeaturedActive() && !audioEl.paused;
     featuredIcon.innerHTML = isThisPlaying ? PAUSE_ICON : PLAY_ICON;
     featuredBtn.setAttribute('aria-label', isThisPlaying ? 'Pause Raíz' : 'Play Raíz');
   }
@@ -1660,8 +1662,9 @@ try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e)
 
   featuredBtn.addEventListener('click', () => {
     if (isFeaturedActive()) {
-      // already on Mariposa — just toggle play/pause
-      playing ? pause() : play();
+      // already on Mariposa — just toggle play/pause based on the audio's
+      // actual paused state (more reliable than the `playing` global).
+      audioEl.paused ? play() : pause();
     } else {
       startFeatured();
     }
