@@ -1585,14 +1585,96 @@ tweaksClose.addEventListener('click', () => {
 });
 try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
 
-/* featured album button */
-document.querySelectorAll('[data-release-id]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.getAttribute('data-release-id');
-    const idx = RELEASES.findIndex(r => r.id === id);
-    if (idx >= 0) openPlayer(idx, null, true);
+/* Featured album — Raíz / Mariposa, starting at 0:03 to skip the silent intro.
+   Pre-loads Mariposa on page init so the seek is instant, and the button
+   toggles play/pause when this exact track is active. */
+(function () {
+  const FEATURED_RELEASE_ID = 'raiz';
+  const FEATURED_TRACK_INDEX = 0;
+  const FEATURED_START_AT = 3;
+
+  const featuredBtn = document.querySelector('.featured[data-release-id="' + FEATURED_RELEASE_ID + '"]');
+  if (!featuredBtn) return;
+  const featuredIcon = featuredBtn.querySelector('.featured-play-icon');
+
+  // Source-of-truth: pull the audio URL from the RELEASES array so it can
+  // never drift from the rest of the player.
+  const featuredRelease = RELEASES.find(r => r.id === FEATURED_RELEASE_ID);
+  const featuredTrack = featuredRelease && featuredRelease.tracks && featuredRelease.tracks[FEATURED_TRACK_INDEX];
+  const FEATURED_AUDIO = featuredTrack && featuredTrack.audio;
+  if (!FEATURED_AUDIO) return;
+
+  const PLAY_ICON  = '<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3.5v13l11-6.5z"/></svg>';
+  const PAUSE_ICON = '<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><rect x="5.5" y="3.5" width="3" height="13" rx="0.5"/><rect x="11.5" y="3.5" width="3" height="13" rx="0.5"/></svg>';
+
+  function isFeaturedActive() {
+    const r = RELEASES[current];
+    return !!(r && r.id === FEATURED_RELEASE_ID && currentTrack === FEATURED_TRACK_INDEX);
+  }
+
+  function refreshFeaturedIcon() {
+    const isThisPlaying = isFeaturedActive() && playing;
+    featuredIcon.innerHTML = isThisPlaying ? PAUSE_ICON : PLAY_ICON;
+    featuredBtn.setAttribute('aria-label', isThisPlaying ? 'Pause Raíz' : 'Play Raíz');
+  }
+
+  // We keep a Blob URL of the Mariposa file in memory. Using a Blob URL
+  // bypasses the need for HTTP Range support on the server (the file is
+  // already in browser RAM), so the seek to 3s is instant and works in all
+  // environments — local Python http.server, Vercel, etc.
+  let featuredBlobUrl = null;
+  fetch(FEATURED_AUDIO)
+    .then(res => res.ok ? res.blob() : Promise.reject(res.status))
+    .then(blob => { featuredBlobUrl = URL.createObjectURL(blob); })
+    .catch(() => { /* fall back to streaming */ });
+
+  function startFeatured() {
+    const idx = RELEASES.findIndex(r => r.id === FEATURED_RELEASE_ID);
+    if (idx < 0) return;
+    openPlayer(idx, FEATURED_TRACK_INDEX, false);
+
+    // Override audioEl.src with the in-memory Blob URL if we have it.
+    if (featuredBlobUrl) audioEl.src = featuredBlobUrl;
+
+    const tryStart = () => {
+      try { audioEl.currentTime = FEATURED_START_AT; } catch (_) {}
+      updateBar();
+      updateTime();
+      play();
+    };
+
+    // canplay (readyState 3) means we have enough data to start playback AND
+    // the seek to 3s should land within the buffered range — most reliable.
+    if (audioEl.readyState >= 3) {
+      tryStart();
+    } else {
+      const onReady = () => {
+        audioEl.removeEventListener('canplay', onReady);
+        audioEl.removeEventListener('loadedmetadata', onReady);
+        tryStart();
+      };
+      audioEl.addEventListener('canplay', onReady);
+      audioEl.addEventListener('loadedmetadata', onReady);
+    }
+  }
+
+  featuredBtn.addEventListener('click', () => {
+    if (isFeaturedActive()) {
+      // already on Mariposa — just toggle play/pause
+      playing ? pause() : play();
+    } else {
+      startFeatured();
+    }
   });
-});
+
+  // Sync the icon whenever audio state changes (also covers play/pause from
+  // the global player, prev/next buttons, track row clicks, etc.)
+  ['play', 'pause', 'ended', 'loadedmetadata', 'emptied'].forEach(ev => {
+    audioEl.addEventListener(ev, refreshFeaturedIcon);
+  });
+
+  refreshFeaturedIcon();
+})();
 </script>
 <script>
   (function(){
