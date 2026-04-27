@@ -694,18 +694,18 @@
   .player {
     position: fixed;
     left: 50%;
-    bottom: 24px;
+    bottom: 20px;
     transform: translateX(-50%) translateY(140%);
-    width: min(640px, calc(100vw - 48px));
+    width: min(540px, calc(100vw - 32px));
     background: rgba(20,20,22,0.88);
     backdrop-filter: blur(24px) saturate(160%);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
     border: 1px solid var(--rule-2);
-    border-radius: 18px;
-    padding: 12px 16px 12px 12px;
+    border-radius: 14px;
+    padding: 8px 10px 8px 8px;
     display: grid;
-    grid-template-columns: 56px minmax(0,1fr) auto;
-    gap: 16px;
+    grid-template-columns: 44px minmax(0,1fr) auto;
+    gap: 12px;
     align-items: center;
     box-shadow: 0 24px 60px -10px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.3);
     z-index: 100;
@@ -714,10 +714,27 @@
   }
   .player.open { transform: translateX(-50%) translateY(0); opacity: 1; }
 
+  .player-close {
+    position: absolute;
+    top: -8px; right: -8px;
+    width: 22px; height: 22px;
+    border: 1px solid var(--rule-2);
+    background: rgba(20,20,22,0.95);
+    color: var(--ink-dim);
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    padding: 0;
+    transition: color .2s, border-color .2s, transform .2s;
+  }
+  .player-close:hover { color: var(--ink); border-color: var(--ink-dim); transform: scale(1.08); }
+  .player-close svg { width: 8px; height: 8px; }
+
   .player-art {
-    width: 56px; height: 56px;
+    width: 44px; height: 44px;
     background: var(--bg-3);
-    border-radius: 10px;
+    border-radius: 8px;
     position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
   }
@@ -745,7 +762,7 @@
   .player-title {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.2;
     font-weight: 300;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -754,8 +771,7 @@
     font-family: var(--mono);
     font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-dim);
-    margin-top: 4px;
-    display: flex; gap: 12px;
+    margin-top: 2px;
   }
   .player-progress {
     margin-top: 2px;
@@ -785,9 +801,9 @@
   }
   .player-progress.seeking .player-progress-bar { transition: none; }
 
-  .player-controls { display: flex; align-items: center; gap: 4px; }
+  .player-controls { display: flex; align-items: center; gap: 2px; }
   .player-btn {
-    width: 36px; height: 36px;
+    width: 30px; height: 30px;
     border: none; background: transparent;
     color: var(--ink);
     cursor: pointer; border-radius: 50%;
@@ -797,10 +813,11 @@
   .player-btn:hover { background: var(--bg-3); color: var(--accent); }
   .player-btn.primary {
     background: var(--ink); color: var(--bg);
-    width: 40px; height: 40px;
+    width: 34px; height: 34px;
   }
   .player-btn.primary:hover { background: var(--accent); color: var(--accent-ink); }
-  .player-btn svg { width: 14px; height: 14px; }
+  .player-btn svg { width: 12px; height: 12px; }
+  .player-btn.primary svg { width: 13px; height: 13px; }
 
   /* ------- TWEAKS ------- */
   .tweaks {
@@ -981,11 +998,13 @@
 
 <!-- PERSISTENT MINI PLAYER -->
 <div class="player" id="player" aria-hidden="true">
+  <button class="player-close" id="player-close" aria-label="Close player" type="button">
+    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 2l6 6M8 2l-6 6"/></svg>
+  </button>
   <div class="player-art" id="player-art"><span class="pulse"></span></div>
   <div class="player-info">
     <div class="player-title" id="player-title">—</div>
     <div class="player-meta">
-      <span id="player-year">—</span>
       <span id="player-time">0:00 / 0:00</span>
     </div>
     <div class="player-progress"><div class="player-progress-bar" id="player-bar"></div></div>
@@ -1264,9 +1283,9 @@ LISTEN.forEach(l => {
 /* ------------- PLAYER ------------- */
 const player = document.getElementById('player');
 const playerTitle = document.getElementById('player-title');
-const playerYear  = document.getElementById('player-year');
 const playerTime  = document.getElementById('player-time');
 const playerBar   = document.getElementById('player-bar');
+const playerClose = document.getElementById('player-close');
 const playIcon    = document.getElementById('play-icon');
 const playBtn     = document.getElementById('play-btn');
 const prevBtn     = document.getElementById('prev-btn');
@@ -1274,6 +1293,12 @@ const nextBtn     = document.getElementById('next-btn');
 
 const PLAY_SVG  = '<path d="M3 2l11 6-11 6V2z"/>';
 const PAUSE_SVG = '<path d="M3 2h4v12H3zM9 2h4v12H9z"/>';
+
+// Smaller play/pause icons used in release cards and track rows
+const GLYPH_PLAY_SVG  = '<svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor"><path d="M2 1l9 5-9 5V1z"/></svg>';
+const GLYPH_PAUSE_SVG = '<svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></svg>';
+const TRACK_PLAY_SVG  = '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5V1z"/></svg>';
+const TRACK_PAUSE_SVG = '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></svg>';
 
 let current = null;       // release index
 let currentTrack = null;  // track index within the release (or null for single-track)
@@ -1322,7 +1347,6 @@ function openPlayer(idx, trackIdx=null, auto=true) {
   }
 
   playerTitle.textContent = activeTrackTitle();
-  playerYear.textContent = r.year + ' · ' + r.tags[0];
   if (r.cover) {
     playerArt.style.backgroundImage = `url('${r.cover}')`;
     playerArt.style.backgroundSize = 'cover';
@@ -1432,27 +1456,39 @@ function prev() {
 }
 
 function refreshLabels() {
+  const isPlaying = !audioEl.paused;
   document.querySelectorAll('.play-btn').forEach((btn) => {
     const idx = +btn.dataset.idx;
     const lab = btn.querySelector('.play-label');
+    const glyph = btn.querySelector('.glyph');
     const r = RELEASES[idx];
     if (!lab) return;
     const hasAudio = !!(r.audio || (r.tracks && r.tracks.some(t => t.audio)));
-    if (idx === current && playing) {
+    const isThis = idx === current && isPlaying;
+    if (isThis) {
       lab.textContent = 'Pause · ' + r.duration;
+      if (glyph) glyph.innerHTML = GLYPH_PAUSE_SVG;
     } else if (!hasAudio) {
       lab.textContent = 'Preview unavailable';
+      if (glyph) glyph.innerHTML = GLYPH_PLAY_SVG;
     } else {
       lab.textContent = 'Play · ' + r.duration;
+      if (glyph) glyph.innerHTML = GLYPH_PLAY_SVG;
     }
   });
 }
 
 function refreshTrackRows() {
+  const isPlaying = !audioEl.paused;
   document.querySelectorAll('.track-row').forEach(row => {
     const idx = +row.dataset.idx;
     const tIdx = +row.dataset.track;
-    row.classList.toggle('active', idx === current && tIdx === currentTrack);
+    const isActive = idx === current && tIdx === currentTrack;
+    row.classList.toggle('active', isActive);
+    const trackPlay = row.querySelector('.track-play');
+    if (trackPlay) {
+      trackPlay.innerHTML = (isActive && isPlaying) ? TRACK_PAUSE_SVG : TRACK_PLAY_SVG;
+    }
   });
 }
 
@@ -1536,6 +1572,19 @@ document.querySelectorAll('.track-row').forEach(row => {
 playBtn.addEventListener('click', toggle);
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
+
+// Dismiss player: pause and reset session so spacebar goes back to "start
+// featured" mode and release/track UI clears its active state.
+playerClose.addEventListener('click', () => {
+  audioEl.pause();
+  player.classList.remove('open');
+  player.setAttribute('aria-hidden', 'true');
+  current = null;
+  currentTrack = null;
+  document.querySelectorAll('.release.playing').forEach(el => el.classList.remove('playing'));
+  refreshLabels();
+  refreshTrackRows();
+});
 
 // initial label pass
 refreshLabels();
