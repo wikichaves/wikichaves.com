@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "admin-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/wikichaves/Documents/GitHub/casabosquemontoya-admin", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}
