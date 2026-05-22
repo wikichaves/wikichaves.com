@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tero Admin · Wiki Chaves Design</title>
+<meta name="description" content="Designing and building a tailor-made property management system from the ground up — leveraging modular architecture, IoT, and AI to automate a four-house complex.">
+<meta name="author" content="Wiki Chaves">
+<link rel="canonical" href="https://wikichaves.com/design/projects/tero">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Wiki Chaves">
+<meta property="og:title" content="Tero Admin · Wiki Chaves Design">
+<meta property="og:description" content="Designing and building a tailor-made property management system from the ground up — leveraging modular architecture, IoT, and AI to automate a four-house complex.">
+<meta property="og:url" content="https://wikichaves.com/design/projects/tero">
+<!-- TODO: replace with the actual hero image once added -->
+<meta property="og:image" content="https://wikichaves.com/design/projects/tero/photos/Tero-Hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@wikichaves">
+<meta name="twitter:title" content="Tero Admin · Wiki Chaves Design">
+<meta name="twitter:description" content="Designing and building a tailor-made property management system from the ground up — leveraging modular architecture, IoT, and AI to automate a four-house complex.">
+<meta name="twitter:image" content="https://wikichaves.com/design/projects/tero/photos/Tero-Hero.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/wikichaves.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=block" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=2">
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+  .page {
+    padding: 96px 0 48px;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: start;
+  }
+  .page .section-label { padding-top: 8px; }
+  .page .col-body { min-width: 0; max-width: 720px; }
+
+  /* title block */
+  .project-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
+  .project-kicker .role { color: var(--accent); }
+  .display {
+    font-size: clamp(44px, 5.8vw, 76px);
+    margin: 0 0 28px;
+  }
+  .project-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.5;
+    color: var(--ink-dim);
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 620px;
+  }
+  .project-lede em { color: var(--ink); font-style: italic; }
+
+  /* prose */
+  .prose { max-width: 640px; }
+  .prose h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .prose h2 em { font-style: italic; color: var(--accent); }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .prose p em { color: var(--ink); font-style: italic; }
+  .prose a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+  }
+  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .prose .lead-in { color: var(--ink); }
+
+  /* module heading + definition list (Challenge / Module / Philosophy) */
+  .module h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .module h3 em { font-style: italic; color: var(--accent); }
+  .step-defs {
+    margin: 8px 0 0;
+    max-width: 640px;
+  }
+  .step-defs dt {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 22px;
+  }
+  .step-defs dt:first-of-type { margin-top: 14px; }
+  .step-defs dd {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    margin: 6px 0 0;
+    max-width: 620px;
+    text-wrap: pretty;
+  }
+
+  /* full-width figures */
+  .figure-band {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+  .figure-band img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .figure-band figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* outbound link in source-available */
+  .repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color .25s, color .25s;
+    margin-top: 8px;
+  }
+  .repo-link:hover { border-bottom-color: var(--accent); }
+  .repo-link::after { content: "  ↗"; color: var(--ink-faint); }
+
+  /* back */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 40px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      row-gap: 20px;
+      padding-top: 56px;
+    }
+    .page .section-label { padding-top: 0; margin-top: 16px; }
+    .page .section-label:first-child { margin-top: 0; }
+    .module h3 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-mark"><img class="mark" src="/assets/wikichaves.svg" alt=""> Wiki Chaves</a>
+    <div class="nav-links">
+      <a href="/design" class="active">Design</a>
+      <a href="/music">Music</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <section class="page">
+
+      <!-- 01 · Overview -->
+      <div class="section-label"><span class="num">01</span> Project</div>
+      <div class="col-body">
+        <a href="/design/projects" class="back-link">← Back to Projects</a>
+        <div class="project-kicker">
+          <span>Tero</span><span class="sep">·</span><span>2026</span><span class="sep">·</span><span class="role">Crafted Product</span>
+        </div>
+        <h1 class="display">Tero <em>Admin.</em></h1>
+        <p class="project-lede">Designing and building a tailor-made property management system from the ground up — leveraging <em>modular architecture, IoT, and AI</em> to automate a four-house complex.</p>
+      </div>
+
+      <!-- 02 · The system -->
+      <div class="section-label"><span class="num">02</span> The system</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Modular architecture for the <em>physical world.</em></h2>
+          <p>The problem with most off-the-shelf Property Management Systems (PMS) is bloatware. Paying for a generic SaaS often feels like renting a five-story office building for a three-person team — you pay a premium for features you will never use, yet the system remains completely rigid to your actual needs.</p>
+          <p>Instead of adapting my operations to third-party software, I built my own to run my four-house complex in La Barra. Tero Admin isn't a traditional "tailor-made" app; it is built on high-efficiency modular architecture. Operating under a <em>"Pod-of-One"</em> model, I leveraged AI, smart automations, and system design principles to execute at the speed of a full team, building only the exact modules needed to eliminate daily friction.</p>
+          <p class="lead-in">Here are the three core modules running the system:</p>
+        </div>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER 1 — system overview / dashboard hero -->
+      <!-- TODO: add image at /design/projects/tero/photos/Tero-System-Overview.{avif,webp,jpg} -->
+      <figure class="figure-band">
+        <picture>
+          <source srcset="/design/projects/tero/photos/Tero-System-Overview.avif" type="image/avif">
+          <source srcset="/design/projects/tero/photos/Tero-System-Overview.webp" type="image/webp">
+          <img src="/design/projects/tero/photos/Tero-System-Overview.jpg" alt="Tero Admin — system overview" loading="lazy">
+        </picture>
+        <figcaption>Tero Admin — system overview</figcaption>
+      </figure>
+
+      <!-- 03 · Module — Automated Hospitality -->
+      <div class="section-label"><span class="num">03</span> Hospitality</div>
+      <div class="col-body module">
+        <h3>Automated Hospitality <em>(IoT + UX).</em></h3>
+        <dl class="step-defs">
+          <dt>The challenge</dt>
+          <dd>A guest's check-in experience doesn't begin when they get the keys; it starts with the thermal comfort of the house when they walk in.</dd>
+          <dt>The module</dt>
+          <dd>An integrated temperature and humidity control system.</dd>
+          <dt>The philosophy</dt>
+          <dd>Sometimes the best User Interface isn't a glowing screen on a smartphone — it's the perfect physical climate the moment someone crosses the door.</dd>
+        </dl>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER 2 — IoT / climate control shot -->
+      <!-- TODO: add image at /design/projects/tero/photos/Tero-Hospitality.{avif,webp,jpg} -->
+      <figure class="figure-band">
+        <picture>
+          <source srcset="/design/projects/tero/photos/Tero-Hospitality.avif" type="image/avif">
+          <source srcset="/design/projects/tero/photos/Tero-Hospitality.webp" type="image/webp">
+          <img src="/design/projects/tero/photos/Tero-Hospitality.jpg" alt="Automated climate control" loading="lazy">
+        </picture>
+        <figcaption>Automated climate control</figcaption>
+      </figure>
+
+      <!-- 04 · Module — Invisible Operations -->
+      <div class="section-label"><span class="num">04</span> Operations</div>
+      <div class="col-body module">
+        <h3>Invisible Operations <em>(Data Parsing + Cost Control).</em></h3>
+        <dl class="step-defs">
+          <dt>The challenge</dt>
+          <dd>Manually tracking energy costs and matching them against actual occupancy is a major administrative time-sink.</dd>
+          <dt>The module</dt>
+          <dd>An automated backend flow that intercepts email-forwarded utility bills, extracts the data, and automatically matches it against the complex's real energy usage.</dd>
+          <dt>The philosophy</dt>
+          <dd>Heavy bureaucratic tasks should be resolved by the backend. Fewer manual interfaces, more invisible integrations that protect margins.</dd>
+        </dl>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER 3 — backend flow / data parsing diagram or screenshot -->
+      <!-- TODO: add image at /design/projects/tero/photos/Tero-Operations.{avif,webp,jpg} -->
+      <figure class="figure-band">
+        <picture>
+          <source srcset="/design/projects/tero/photos/Tero-Operations.avif" type="image/avif">
+          <source srcset="/design/projects/tero/photos/Tero-Operations.webp" type="image/webp">
+          <img src="/design/projects/tero/photos/Tero-Operations.jpg" alt="Automated utility bill parsing flow" loading="lazy">
+        </picture>
+        <figcaption>Automated utility-bill parsing flow</figcaption>
+      </figure>
+
+      <!-- 05 · Module — Zero-Friction Team UI -->
+      <div class="section-label"><span class="num">05</span> Team UI</div>
+      <div class="col-body module">
+        <h3>Zero-Friction Team UI <em>(No-UI).</em></h3>
+        <dl class="step-defs">
+          <dt>The challenge</dt>
+          <dd>Forcing maintenance and cleaning staff to download a new app, remember passwords, and learn a foreign system creates unnecessary resistance and errors.</dd>
+          <dt>The module</dt>
+          <dd>Task assignment, status tracking, and notifications operated entirely through WhatsApp.</dd>
+          <dt>The philosophy</dt>
+          <dd>The best interface is the one the user already knows. Instead of forcing people into a new system, I brought the system to them.</dd>
+        </dl>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER 4 — WhatsApp task flow screenshots -->
+      <!-- TODO: add image at /design/projects/tero/photos/Tero-Team-UI.{avif,webp,jpg} -->
+      <figure class="figure-band">
+        <picture>
+          <source srcset="/design/projects/tero/photos/Tero-Team-UI.avif" type="image/avif">
+          <source srcset="/design/projects/tero/photos/Tero-Team-UI.webp" type="image/webp">
+          <img src="/design/projects/tero/photos/Tero-Team-UI.jpg" alt="WhatsApp-based task assignment for the on-site team" loading="lazy">
+        </picture>
+        <figcaption>WhatsApp-based task assignment for the on-site team</figcaption>
+      </figure>
+
+      <!-- 06 · Source-available -->
+      <div class="section-label"><span class="num">06</span> Source-available</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Learning <em>in public.</em></h2>
+          <p>I deeply believe in <em>context engineering</em> and the value of learning in public. Tero Admin is the operational engine of my properties, but I am opening the logic and the system because transparency accelerates collective judgment. Code has become a commodity; how we orchestrate the pieces is what truly scales.</p>
+          <!-- TODO: replace href with the actual public repo URL once available -->
+          <a class="repo-link" href="#" target="_blank" rel="noopener">View the repository</a>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-meta">
+    <span>© Wiki Chaves</span>
+    <a href="#" class="contact-link" data-u="aGk=" data-d="d2lraWNoYXZlcy5jb20=">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.contact-link').forEach(function(a){
+      a.href = 'mailto:' + atob(a.dataset.u) + '@' + atob(a.dataset.d);
+    });
+  })();
+</script>
+
+</body>
+</html>
