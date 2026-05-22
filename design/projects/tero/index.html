@@ -308,13 +308,13 @@
         </div>
         <h1 class="display">Tero <em>Admin.</em></h1>
         <p class="project-lede">Designing and building a tailor-made property management system from the ground up — leveraging <em>modular architecture, IoT, and AI</em> to automate a four-house complex.</p>
-        <ul class="stats" aria-label="Project stats">
+        <ul class="stats" aria-label="Project stats" data-repo="wikichaves/tero-admin">
           <li>
-            <span class="stat-num">224</span>
+            <span class="stat-num" data-stat="commits">224</span>
             <span class="stat-label">Commits</span>
           </li>
           <li>
-            <span class="stat-num">14</span>
+            <span class="stat-num" data-stat="active-days">14</span>
             <span class="stat-label">Active days</span>
           </li>
           <li>
@@ -468,6 +468,76 @@
     document.querySelectorAll('.contact-link').forEach(function(a){
       a.href = 'mailto:' + atob(a.dataset.u) + '@' + atob(a.dataset.d);
     });
+  })();
+</script>
+
+<script>
+  /* Live stats from the GitHub API. Hardcoded numbers in the markup are the
+     fallback; this script just updates them in-place. Result is cached in
+     localStorage for 1h so we don't hammer the API on every page view. */
+  (async function(){
+    var statsEl = document.querySelector('.stats[data-repo]');
+    if (!statsEl) return;
+    var repo = statsEl.getAttribute('data-repo');
+    var CACHE_KEY = 'tero-stats-v1';
+    var TTL = 60 * 60 * 1000; // 1h
+
+    function apply(commits, days) {
+      var c = document.querySelector('[data-stat="commits"]');
+      var d = document.querySelector('[data-stat="active-days"]');
+      if (c && Number.isFinite(commits)) c.textContent = commits;
+      if (d && Number.isFinite(days)) d.textContent = days;
+    }
+
+    // Read fresh cache first
+    try {
+      var raw = localStorage.getItem(CACHE_KEY);
+      if (raw) {
+        var cached = JSON.parse(raw);
+        if (Date.now() - cached.ts < TTL) {
+          apply(cached.commits, cached.days);
+          return;
+        }
+      }
+    } catch (_) {}
+
+    try {
+      // Commit total via Link header trick (1 request, no body parse)
+      var head = await fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1');
+      if (!head.ok) return;
+      var link = head.headers.get('Link') || '';
+      var m = link.match(/[?&]page=(\d+)>;\s*rel="last"/);
+      var commits = m ? parseInt(m[1], 10) : 1;
+
+      // Active days — count distinct YYYY-MM-DD across all commits
+      var days = new Set();
+      var page = 1;
+      while (page <= 20) { // safety cap
+        var res = await fetch('https://api.github.com/repos/' + repo + '/commits?per_page=100&page=' + page);
+        if (!res.ok) break;
+        var data = await res.json();
+        if (!Array.isArray(data) || data.length === 0) break;
+        data.forEach(function(c){
+          var ts = c.commit && c.commit.author && c.commit.author.date;
+          if (ts) days.add(ts.slice(0, 10));
+        });
+        if (data.length < 100) break;
+        page++;
+      }
+
+      var dayCount = days.size;
+      apply(commits, dayCount);
+
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          ts: Date.now(),
+          commits: commits,
+          days: dayCount
+        }));
+      } catch (_) {}
+    } catch (e) {
+      /* Silent fail — fallback numbers stay */
+    }
   })();
 </script>
 
