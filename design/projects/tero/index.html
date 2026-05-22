@@ -12,10 +12,9 @@
 <meta property="og:title" content="Tero Admin · Wiki Chaves Design">
 <meta property="og:description" content="Designing and building a tailor-made property management system from the ground up — leveraging modular architecture, IoT, and AI to automate a four-house complex.">
 <meta property="og:url" content="https://wikichaves.com/design/projects/tero">
-<!-- TODO: replace with the actual hero image once added -->
 <meta property="og:image" content="https://wikichaves.com/design/projects/tero/photos/Tero-Hero.jpg">
 <meta property="og:image:width" content="1600">
-<meta property="og:image:height" content="1200">
+<meta property="og:image:height" content="1046">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@wikichaves">
 <meta name="twitter:title" content="Tero Admin · Wiki Chaves Design">
@@ -153,6 +152,34 @@
     margin-top: 14px;
   }
 
+  /* Portrait phone screenshots — two side-by-side, centered, capped narrow */
+  .phone-shots {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 8px 0;
+  }
+  .phone-shot { margin: 0; padding: 0; max-width: 300px; flex: 0 1 300px; }
+  .phone-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .phone-shot figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 12px;
+    text-align: center;
+  }
+
   /* outbound link in source-available */
   .repo-link {
     display: inline-flex;
@@ -237,15 +264,14 @@
         </div>
       </div>
 
-      <!-- IMAGE PLACEHOLDER 1 — system overview / dashboard hero -->
-      <!-- TODO: add image at /design/projects/tero/photos/Tero-System-Overview.{avif,webp,jpg} -->
+      <!-- Energía — live consumption + cost per property -->
       <figure class="figure-band">
         <picture>
           <source srcset="/design/projects/tero/photos/Tero-System-Overview.avif" type="image/avif">
           <source srcset="/design/projects/tero/photos/Tero-System-Overview.webp" type="image/webp">
-          <img src="/design/projects/tero/photos/Tero-System-Overview.jpg" alt="Tero Admin — system overview" loading="lazy">
+          <img src="/design/projects/tero/photos/Tero-System-Overview.jpg" alt="Live energy consumption and cost per property in Tero Admin" loading="lazy">
         </picture>
-        <figcaption>Tero Admin — system overview</figcaption>
+        <figcaption>Live energy consumption &amp; cost per property</figcaption>
       </figure>
 
       <!-- 03 · Module — Automated Hospitality -->
@@ -262,15 +288,14 @@
         </dl>
       </div>
 
-      <!-- IMAGE PLACEHOLDER 2 — IoT / climate control shot -->
-      <!-- TODO: add image at /design/projects/tero/photos/Tero-Hospitality.{avif,webp,jpg} -->
+      <!-- Ambientes — temp/humidity per room -->
       <figure class="figure-band">
         <picture>
           <source srcset="/design/projects/tero/photos/Tero-Hospitality.avif" type="image/avif">
           <source srcset="/design/projects/tero/photos/Tero-Hospitality.webp" type="image/webp">
-          <img src="/design/projects/tero/photos/Tero-Hospitality.jpg" alt="Automated climate control" loading="lazy">
+          <img src="/design/projects/tero/photos/Tero-Hospitality.jpg" alt="Live temperature and humidity per room across the complex" loading="lazy">
         </picture>
-        <figcaption>Automated climate control</figcaption>
+        <figcaption>Live temperature &amp; humidity per room</figcaption>
       </figure>
 
       <!-- 04 · Module — Invisible Operations -->
@@ -287,15 +312,14 @@
         </dl>
       </div>
 
-      <!-- IMAGE PLACEHOLDER 3 — backend flow / data parsing diagram or screenshot -->
-      <!-- TODO: add image at /design/projects/tero/photos/Tero-Operations.{avif,webp,jpg} -->
+      <!-- Facturas — email-forwarded bills auto-parsed by property -->
       <figure class="figure-band">
         <picture>
           <source srcset="/design/projects/tero/photos/Tero-Operations.avif" type="image/avif">
           <source srcset="/design/projects/tero/photos/Tero-Operations.webp" type="image/webp">
-          <img src="/design/projects/tero/photos/Tero-Operations.jpg" alt="Automated utility bill parsing flow" loading="lazy">
+          <img src="/design/projects/tero/photos/Tero-Operations.jpg" alt="Bills forwarded by email get parsed and grouped by property" loading="lazy">
         </picture>
-        <figcaption>Automated utility-bill parsing flow</figcaption>
+        <figcaption>Bills forwarded by email, parsed &amp; grouped by property</figcaption>
       </figure>
 
       <!-- 05 · Module — Zero-Friction Team UI -->
@@ -312,16 +336,25 @@
         </dl>
       </div>
 
-      <!-- IMAGE PLACEHOLDER 4 — WhatsApp task flow screenshots -->
-      <!-- TODO: add image at /design/projects/tero/photos/Tero-Team-UI.{avif,webp,jpg} -->
-      <figure class="figure-band">
-        <picture>
-          <source srcset="/design/projects/tero/photos/Tero-Team-UI.avif" type="image/avif">
-          <source srcset="/design/projects/tero/photos/Tero-Team-UI.webp" type="image/webp">
-          <img src="/design/projects/tero/photos/Tero-Team-UI.jpg" alt="WhatsApp-based task assignment for the on-site team" loading="lazy">
-        </picture>
-        <figcaption>WhatsApp-based task assignment for the on-site team</figcaption>
-      </figure>
+      <!-- WhatsApp task + query screenshots — portrait phones, side-by-side -->
+      <div class="phone-shots">
+        <figure class="phone-shot">
+          <picture>
+            <source srcset="/design/projects/tero/photos/Tero-Team-UI.avif" type="image/avif">
+            <source srcset="/design/projects/tero/photos/Tero-Team-UI.webp" type="image/webp">
+            <img src="/design/projects/tero/photos/Tero-Team-UI.jpg" alt="Tero Bot — creating a task from a WhatsApp message" loading="lazy">
+          </picture>
+          <figcaption>Creating a task from WhatsApp</figcaption>
+        </figure>
+        <figure class="phone-shot">
+          <picture>
+            <source srcset="/design/projects/tero/photos/Tero-Team-UI-Query.avif" type="image/avif">
+            <source srcset="/design/projects/tero/photos/Tero-Team-UI-Query.webp" type="image/webp">
+            <img src="/design/projects/tero/photos/Tero-Team-UI-Query.jpg" alt="Tero Bot — querying live sensor readings from WhatsApp" loading="lazy">
+          </picture>
+          <figcaption>Querying live sensor readings</figcaption>
+        </figure>
+      </div>
 
       <!-- 06 · Source-available -->
       <div class="section-label"><span class="num">06</span> Source-available</div>
