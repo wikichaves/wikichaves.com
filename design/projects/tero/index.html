@@ -239,35 +239,7 @@
     color: var(--ink-faint);
   }
 
-  /* Portrait phone screenshots — two side-by-side, centered, capped narrow */
-  .phone-shots {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 8px 0;
-  }
-  .phone-shot { margin: 0; padding: 0; max-width: 300px; flex: 0 1 300px; }
-  .phone-shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    border: 1px solid var(--rule);
-    background: var(--bg-2);
-  }
-  .phone-shot figcaption {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-top: 12px;
-    text-align: center;
-  }
-
-  /* outbound link in source-available */
+/* outbound link in source-available */
   .repo-link {
     display: inline-flex;
     align-items: center;
@@ -442,24 +414,16 @@
         <p class="kapso-note">Tero Bot is built on <a href="https://kapso.ai/" target="_blank" rel="noopener">Kapso</a> — a WhatsApp orchestration layer that lets the team distribute tasks, file issues, and log supply intakes without leaving the chat.</p>
       </div>
 
-      <!-- WhatsApp task creation — single phone screenshot centered -->
-      <div class="phone-shots">
-        <figure class="phone-shot">
-          <picture>
-            <source srcset="/design/projects/tero/photos/Tero-Team-UI.avif" type="image/avif">
-            <source srcset="/design/projects/tero/photos/Tero-Team-UI.webp" type="image/webp">
-            <img src="/design/projects/tero/photos/Tero-Team-UI.jpg" alt="Tero Bot — creating a task from a WhatsApp message" loading="lazy">
-          </picture>
-          <figcaption>Creating a task from WhatsApp</figcaption>
-        </figure>
-      </div>
-      <!--
-        TODO: replace the centered phone-shot above with a contextual lifestyle
-        image — a person looking at the phone with the same screen visible.
-        Target file: /design/projects/tero/photos/Tero-Team-UI-Context.jpg
-        (also .avif and .webp). Probably better as a figure.figure-band so it
-        spans full width like a hero shot.
-      -->
+      <!-- Lifestyle shot — phone in hand showing the WhatsApp task, framed
+           against the very wall that triggered the report -->
+      <figure class="figure-band">
+        <picture>
+          <source srcset="/design/projects/tero/photos/Tero-Team-UI-Context.avif" type="image/avif">
+          <source srcset="/design/projects/tero/photos/Tero-Team-UI-Context.webp" type="image/webp">
+          <img src="/design/projects/tero/photos/Tero-Team-UI-Context.jpg" alt="A hand holds a phone showing the Tero Bot WhatsApp task &lsquo;Se marcó la pared. Llamar al pintor.&rsquo; against the actual stained wall" loading="lazy">
+        </picture>
+        <figcaption>Reporting from the field — task created in seconds, no app to download</figcaption>
+      </figure>
 
 
       <!-- 06 · Process / pipeline -->
