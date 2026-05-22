@@ -94,6 +94,14 @@
     transition: border-color .25s, color .25s;
   }
   .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .prose code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--ink);
+    background: var(--bg-2);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
   .prose .lead-in { color: var(--ink); }
 
   /* module heading + definition list (Challenge / Module / Philosophy) */
@@ -150,6 +158,85 @@
     text-transform: uppercase;
     color: var(--ink-faint);
     margin-top: 14px;
+  }
+
+  /* Mini stats — a quick numerical scan of the project */
+  .stats {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 56px;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+  }
+  .stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stats .stat-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .stats .stat-num.accent { color: var(--accent); }
+  .stats .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* Quiet footnote for crediting integrations (Kapso) */
+  .kapso-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    max-width: 620px;
+  }
+  .kapso-note a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: color .2s, border-color .2s;
+  }
+  .kapso-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Process / pipeline diagram inline */
+  .pipeline {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .pipeline li {
+    color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--rule-2);
+    border-radius: 2px;
+    background: var(--bg-2);
+  }
+  .pipeline li.arrow {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--ink-faint);
   }
 
   /* Portrait phone screenshots — two side-by-side, centered, capped narrow */
@@ -251,6 +338,24 @@
         </div>
         <h1 class="display">Tero <em>Admin.</em></h1>
         <p class="project-lede">Designing and building a tailor-made property management system from the ground up — leveraging <em>modular architecture, IoT, and AI</em> to automate a four-house complex.</p>
+        <ul class="stats" aria-label="Project stats">
+          <li>
+            <span class="stat-num">224</span>
+            <span class="stat-label">Commits</span>
+          </li>
+          <li>
+            <span class="stat-num">14</span>
+            <span class="stat-label">Active days</span>
+          </li>
+          <li>
+            <span class="stat-num">1</span>
+            <span class="stat-label">Pod size</span>
+          </li>
+          <li>
+            <span class="stat-num accent">WIP</span>
+            <span class="stat-label">Status</span>
+          </li>
+        </ul>
       </div>
 
       <!-- 02 · The system -->
@@ -334,6 +439,7 @@
           <dt>The philosophy</dt>
           <dd>The best interface is the one the user already knows. Instead of forcing people into a new system, I brought the system to them.</dd>
         </dl>
+        <p class="kapso-note">Tero Bot is built on <a href="https://kapso.ai/" target="_blank" rel="noopener">Kapso</a> — a WhatsApp orchestration layer that lets the team distribute tasks, file issues, and log supply intakes without leaving the chat.</p>
       </div>
 
       <!-- WhatsApp task + query screenshots — portrait phones, side-by-side -->
@@ -356,8 +462,26 @@
         </figure>
       </div>
 
-      <!-- 06 · Source-available -->
-      <div class="section-label"><span class="num">06</span> Source-available</div>
+      <!-- 06 · Process / pipeline -->
+      <div class="section-label"><span class="num">06</span> Process</div>
+      <div class="col-body">
+        <div class="prose">
+          <h2>Idea → ship in <em>one loop.</em></h2>
+          <p>The whole product runs on a tight three-step pipeline:</p>
+          <ul class="pipeline" aria-label="Build pipeline">
+            <li>Linear</li>
+            <li class="arrow">→</li>
+            <li>Claude Code</li>
+            <li class="arrow">→</li>
+            <li>Vercel</li>
+          </ul>
+          <p style="margin-top: 22px;"><em>Linear</em> holds the backlog. Every request, bug, or idea opens an issue. <em>Claude Code</em> reads the issue, writes the patch, opens a commit referencing the issue, and pushes. <em>Vercel</em> deploys every push to <code>main</code> in under a minute — and auto-closes the Linear issue via the commit link.</p>
+          <p>What used to be a multi-person handoff — backlog grooming, dev work, code review, QA, deploy ticket — collapses into a single conversation. The cost per shipped change drops far enough that micro-iterations become the default, not the exception.</p>
+        </div>
+      </div>
+
+      <!-- 07 · Source-available -->
+      <div class="section-label"><span class="num">07</span> Source-available</div>
       <div class="col-body">
         <div class="prose">
           <h2>Learning <em>in public.</em></h2>
