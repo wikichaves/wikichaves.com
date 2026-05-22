@@ -28,7 +28,7 @@
     { "source": "/press", "destination": "https://www.dropbox.com/scl/fo/cs2romxmgxx0lny7fetro/ALmsP5YkVY5vWsIwtVaurIo?rlkey=fv3ony8lay97dvwl2a1yqmymp&e=1&st=zp1252uc&dl=0", "permanent": true },
     { "source": "/resume", "destination": "https://docs.google.com/document/d/1qO0m7jLfsY6Ej2YVrIog_jtxSNIgfxgAD560pTN93HM/edit?usp=sharing", "permanent": true },
     { "source": "/covers", "destination": "https://soundcloud.com/wikichaves/sets/covers/s-VAsQOIGBLuU?si=cb4772a44d56425ba2b952defbf71b5d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing", "permanent": true },
-    { "source": "/tero", "destination": "/design/projects/tero", "permanent": true },
+    { "source": "/tero", "destination": "/design/projects/tero", "permanent": true }
   ],
   "headers": [
     {
