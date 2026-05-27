@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "admin-dev",
+      "name": "tero-bot-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "/Users/wikichaves/Documents/GitHub/casabosquemontoya-admin", "run", "dev"],
+      "runtimeArgs": ["--prefix", "/Users/wikichaves/code/tero-bot", "run", "dev"],
       "port": 3000
     }
   ]
