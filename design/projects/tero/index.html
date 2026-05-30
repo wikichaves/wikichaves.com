@@ -192,6 +192,28 @@
     color: var(--ink-dim);
   }
 
+  /* Output timelapse — sits above the live stats */
+  .output-video {
+    margin: 4px 0 8px;
+    padding: 0;
+  }
+  .output-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .output-video figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
   /* Quiet footnote for crediting integrations (Kapso) */
   .kapso-note {
     font-family: var(--mono);
@@ -532,6 +554,12 @@
         <div class="prose">
           <p>What "micro-iterations as the default" looks like — live from the repo:</p>
         </div>
+        <figure class="output-video">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="/design/projects/tero/video/timelapse.mp4" type="video/mp4">
+          </video>
+          <figcaption>The tero.bot landing, built in micro-iterations</figcaption>
+        </figure>
         <ul class="stats" aria-label="Project stats" data-repo="wikichaves/tero-bot">
           <li>
             <span class="stat-num" data-stat="commits">317</span>
@@ -544,10 +572,6 @@
           <li>
             <span class="stat-num" data-stat="active-days">14</span>
             <span class="stat-label">Active days</span>
-          </li>
-          <li>
-            <span class="stat-num accent">WIP</span>
-            <span class="stat-label">Status</span>
           </li>
         </ul>
       </div>

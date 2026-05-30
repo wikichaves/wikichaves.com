@@ -268,6 +268,76 @@
     .page .section-label:first-child { margin-top: 0; }
     .step-head { gap: 12px; }
   }
+
+  /* ── lightbox ─────────────────────────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 320ms cubic-bezier(.2,.7,.2,1);
+  }
+  .lightbox.open { opacity: 1; pointer-events: auto; }
+  .lightbox__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(13,13,14,.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: zoom-out;
+  }
+  .lightbox__inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    max-width: 92vw;
+    transform: scale(.97);
+    transition: transform 360ms cubic-bezier(.2,.7,.2,1);
+  }
+  .lightbox.open .lightbox__inner { transform: scale(1); }
+  .lightbox__img {
+    max-width: 92vw; max-height: 80vh;
+    object-fit: contain; display: block;
+    box-shadow: 0 30px 80px rgba(0,0,0,.55);
+    background: var(--bg-2);
+    transition: opacity 220ms ease;
+  }
+  .lightbox.loading .lightbox__img { opacity: .35; }
+  .lightbox__cap {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+  .lightbox__close, .lightbox__nav {
+    position: absolute; z-index: 2;
+    background: rgba(239,236,228,.08);
+    color: var(--ink);
+    border: 1px solid var(--rule-2);
+    width: 44px; height: 44px; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 22px; line-height: 1;
+    cursor: pointer; border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+  .lightbox__close:hover, .lightbox__nav:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .lightbox__close { top: 24px; right: 24px; }
+  .lightbox__nav { top: 50%; transform: translateY(-50%); }
+  .lightbox__prev { left: 24px; }
+  .lightbox__next { right: 24px; }
+  body.lb-open { overflow: hidden; }
+
+  @media (max-width: 768px) {
+    .lightbox__img { max-height: 72vh; }
+    .lightbox__nav { width: 40px; height: 40px; font-size: 20px; }
+    .lightbox__close { top: 14px; right: 14px; }
+    .lightbox__prev { left: 8px; }
+    .lightbox__next { right: 8px; }
+    .lightbox__cap { font-size: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -499,6 +569,17 @@
   </div>
 </main>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Expanded gallery">
+  <div class="lightbox__backdrop" data-lb-close></div>
+  <button type="button" class="lightbox__close" data-lb-close aria-label="Close">×</button>
+  <button type="button" class="lightbox__nav lightbox__prev" data-lb-prev aria-label="Previous">‹</button>
+  <button type="button" class="lightbox__nav lightbox__next" data-lb-next aria-label="Next">›</button>
+  <div class="lightbox__inner">
+    <img class="lightbox__img" alt="" />
+    <div class="lightbox__cap"></div>
+  </div>
+</div>
+
 <footer class="foot">
   <div class="foot-meta">
     <span>© Wiki Chaves</span>
@@ -511,6 +592,49 @@
     document.querySelectorAll('.contact-link').forEach(function(a){
       a.href = 'mailto:' + atob(a.dataset.u) + '@' + atob(a.dataset.d);
     });
+  })();
+</script>
+
+<script>
+  /* Lightbox — click any case-study image to expand. Keyboard (←/→/Esc) and touch swipe supported. */
+  (function () {
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('.figure-band img, figure.compare img'));
+    var lb = document.getElementById('lightbox');
+    if (!imgs.length || !lb) return;
+    var lbImg = lb.querySelector('.lightbox__img');
+    var lbCap = lb.querySelector('.lightbox__cap');
+    var i = 0;
+    function srcOf(im) { return im.currentSrc || im.src; }
+    function capOf(im) { var f = im.closest('figure'); var c = f && f.querySelector('figcaption'); return c ? c.textContent.trim() : ''; }
+    function preload(idx) { var im = imgs[idx]; if (!im) return; var p = new Image(); p.src = srcOf(im); }
+    function paint() {
+      var im = imgs[i];
+      lb.classList.add('loading');
+      lbImg.src = srcOf(im);
+      lbImg.alt = im.alt || '';
+      lbCap.textContent = capOf(im);
+      preload((i + 1) % imgs.length);
+      preload((i - 1 + imgs.length) % imgs.length);
+    }
+    lbImg.addEventListener('load', function () { lb.classList.remove('loading'); });
+    lbImg.addEventListener('error', function () { lb.classList.remove('loading'); });
+    function open(idx) { i = idx; paint(); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lb-open'); }
+    function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lb-open'); }
+    function next() { i = (i + 1) % imgs.length; paint(); }
+    function prev() { i = (i - 1 + imgs.length) % imgs.length; paint(); }
+    imgs.forEach(function (im, idx) { im.style.cursor = 'zoom-in'; im.addEventListener('click', function () { open(idx); }); });
+    lb.querySelectorAll('[data-lb-close]').forEach(function (el) { el.addEventListener('click', close); });
+    lb.querySelector('[data-lb-prev]').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+    lb.querySelector('[data-lb-next]').addEventListener('click', function (e) { e.stopPropagation(); next(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'ArrowRight') next();
+    });
+    var touchX = null;
+    lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) { if (touchX === null) return; var dx = e.changedTouches[0].clientX - touchX; touchX = null; if (Math.abs(dx) > 50) (dx < 0 ? next() : prev()); }, { passive: true });
   })();
 </script>
 
