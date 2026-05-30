@@ -142,6 +142,7 @@
   .figure-band {
     grid-column: 1 / -1;
     max-width: 100%;
+    margin: 0;
   }
   .figure-band img {
     display: block;
@@ -280,6 +281,22 @@
     .page .section-label { padding-top: 0; margin-top: 16px; }
     .page .section-label:first-child { margin-top: 0; }
     .module h3 { font-size: 24px; }
+
+    /* Dense desktop dashboard shots are illegible shrunk to phone width.
+       Zoom into the top-left, dropping the fake browser chrome, so the
+       cards and live numbers stay readable. */
+    .figure-band.is-app picture {
+      display: block;
+      overflow: hidden;
+      border-radius: 3px;
+      aspect-ratio: 5 / 4;
+    }
+    .figure-band.is-app img {
+      width: 190%;
+      max-width: none;
+      height: auto;
+      margin: -21% 0 0 -2%;
+    }
   }
 
   /* ── lightbox ─────────────────────────────────────────── */
@@ -428,7 +445,7 @@
       </div>
 
       <!-- Ambientes — temp/humidity per room -->
-      <figure class="figure-band">
+      <figure class="figure-band is-app">
         <picture>
           <source srcset="/design/projects/tero/photos/Tero-Hospitality.avif" type="image/avif">
           <source srcset="/design/projects/tero/photos/Tero-Hospitality.webp" type="image/webp">
@@ -452,7 +469,7 @@
       </div>
 
       <!-- Energía — live consumption + cost per property -->
-      <figure class="figure-band">
+      <figure class="figure-band is-app">
         <picture>
           <source srcset="/design/projects/tero/photos/Tero-System-Overview.avif" type="image/avif">
           <source srcset="/design/projects/tero/photos/Tero-System-Overview.webp" type="image/webp">

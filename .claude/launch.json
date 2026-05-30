@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "/Users/wikichaves/code/tero-bot", "run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "wikichaves-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8848"],
+      "port": 8848
     }
   ]
 }
