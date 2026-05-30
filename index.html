@@ -83,8 +83,11 @@
     .hero .aside { margin-bottom: 40px; }
   }
 
-  /* Mobile: same idea — tighten so hero + nav + footer fit in 100dvh. */
+  /* Mobile: same idea — tighten so hero + nav + footer fit in 100dvh.
+     Center the hero in the leftover space so it reads as deliberate
+     breathing room rather than a void above the footer. */
   @media (max-width: 900px) {
+    main { display: flex; flex-direction: column; justify-content: center; }
     .hero { padding: clamp(40px, 6vh, 80px) 0 clamp(20px, 3vh, 40px); }
     .hero .display { margin-bottom: 24px; }
     .hero .lede { margin-bottom: 12px; }
