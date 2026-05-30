@@ -197,6 +197,7 @@
     margin: 4px 0 8px;
     padding: 0;
   }
+  .output-video .video-wrap { position: relative; }
   .output-video video {
     display: block;
     width: 100%;
@@ -205,6 +206,36 @@
     border: 1px solid var(--rule);
     background: var(--bg-2);
   }
+  .video-replay {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: rgba(13, 13, 14, 0.66);
+    border: 1px solid var(--rule-2);
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .video-replay:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .video-replay__icon { font-size: 15px; line-height: 1; }
+  .video-replay[hidden] { display: none; }
   .output-video figcaption {
     font-family: var(--mono);
     font-size: 10px;
@@ -451,7 +482,7 @@
           <span>Tero</span><span class="sep">·</span><span>2026</span><span class="sep">·</span><span class="role">Crafted Product</span>
         </div>
         <h1 class="display">Tero <em>Bot.</em></h1>
-        <p class="project-lede">An operational engine for <a href="https://casabosquemontoya.com/" target="_blank" rel="noopener">a vacation rental complex with four houses</a> in Uruguay — designed and built end-to-end. <em>IoT, invisible integrations, and a WhatsApp bot</em>, orchestrated into a single system.</p>
+        <p class="project-lede">An operational engine for <a href="https://casabosquemontoya.com/" target="_blank" rel="noopener">a vacation rental complex</a> — designed and built end-to-end. <em>IoT, invisible integrations, and a WhatsApp bot</em>, orchestrated into a single system.</p>
       </div>
 
       <!-- Atmosphere hero — guests arriving to a pre-conditioned home -->
@@ -470,7 +501,7 @@
         <div class="prose">
           <h2>Getting my superpowers <em>back.</em></h2>
           <p>I've always loved staying close to the code — from early HTML and Flash/ActionScript to building WordPress themes. But as product design became more specialized, my output got confined strictly to Figma files.</p>
-          <p>Coding with Claude gave me my superpowers back. I can finally design <em>and</em> execute. <a href="https://tero.bot/" target="_blank" rel="noopener">Tero Bot</a> is the proof — instead of handing off UI screens, I orchestrated the entire system: IoT hardware integrations, backend data parsing, and a zero-friction WhatsApp bot for guests and staff.</p>
+          <p>Coding with Claude gave me my superpowers back. I can finally design <em>and</em> execute. <a href="https://tero.bot/" target="_blank" rel="noopener">Tero Bot</a> is the proof — instead of handing off UI screens to a developer, I orchestrated the entire system: IoT hardware integrations, backend data parsing, and a zero-friction WhatsApp bot for guests and staff.</p>
           <p>This is a statement of how I want to work from now on. <em>Less UI handoffs. More Crafted Software.</em></p>
         </div>
       </div>
@@ -595,12 +626,17 @@
       <div class="section-label"><span class="num">08</span> Output</div>
       <div class="col-body">
         <div class="prose">
-          <p>Zero to production in 89 effective hours of work — the entire system designed, built, and shipped by one person, with AI handling the execution. The numbers, live from the repo:</p>
+          <p>Zero to production in two weeks of work — the entire system designed, built, and shipped by one person, with AI handling the execution. The numbers, live from the repo:</p>
         </div>
         <figure class="output-video">
-          <video autoplay muted loop playsinline preload="metadata">
-            <source src="/design/projects/tero/video/timelapse.mp4" type="video/mp4">
-          </video>
+          <div class="video-wrap">
+            <video muted playsinline preload="metadata">
+              <source src="/design/projects/tero/video/timelapse.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="video-replay" hidden>
+              <span class="video-replay__icon" aria-hidden="true">↻</span> Replay
+            </button>
+          </div>
           <figcaption>The tero.bot landing, built in micro-iterations</figcaption>
         </figure>
         <ul class="stats" aria-label="Project stats" data-repo="wikichaves/tero-bot">
@@ -817,6 +853,42 @@
       touchX = null;
       if (Math.abs(dx) > 50) (dx < 0 ? next() : prev());
     }, { passive: true });
+  })();
+</script>
+
+<script>
+  /* Output timelapse — play once it scrolls into view, pause when it leaves,
+     and surface a Replay button when it finishes. */
+  (function () {
+    var fig = document.querySelector('.output-video');
+    if (!fig) return;
+    var video = fig.querySelector('video');
+    var replay = fig.querySelector('.video-replay');
+    if (!video) return;
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            if (!video.ended) video.play().catch(function () {});
+          } else {
+            if (!video.ended) video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(video);
+    } else {
+      video.play().catch(function () {});
+    }
+
+    video.addEventListener('ended', function () { if (replay) replay.hidden = false; });
+    if (replay) {
+      replay.addEventListener('click', function () {
+        replay.hidden = true;
+        video.currentTime = 0;
+        video.play().catch(function () {});
+      });
+    }
   })();
 </script>
 
