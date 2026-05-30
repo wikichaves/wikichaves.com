@@ -232,32 +232,66 @@
   }
   .kapso-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-  /* Process / pipeline diagram inline */
+  /* Process / pipeline diagram — three connected steps */
   .pipeline {
     list-style: none;
-    margin: 8px 0 0;
+    margin: 28px 0 28px;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 18px;
-    align-items: center;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 720px;
   }
-  .pipeline li {
-    color: var(--ink);
-    padding: 8px 14px;
+  .pipe-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 18px 22px;
     border: 1px solid var(--rule-2);
-    border-radius: 2px;
+    border-radius: 4px;
     background: var(--bg-2);
   }
-  .pipeline li.arrow {
-    border: 0;
-    background: transparent;
-    padding: 0;
+  .pipe-step .pipe-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+  }
+  .pipe-step .pipe-tool {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pipe-step .pipe-role {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    text-wrap: pretty;
+  }
+  /* connector between steps */
+  .pipe-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 14px;
     color: var(--ink-faint);
+  }
+  @media (max-width: 640px) {
+    .pipeline { grid-template-columns: 1fr; gap: 22px; }
+    .pipe-step:not(:last-child)::after {
+      content: "↓";
+      right: auto; left: 50%;
+      top: auto; bottom: -17px;
+      transform: translateX(-50%);
+    }
   }
 
 /* outbound link in source-available */
@@ -446,8 +480,8 @@
       <div class="col-body">
         <div class="prose">
           <h2>Modular architecture for the <em>physical world.</em></h2>
-          <p>Hiring a generic SaaS to run my rentals felt like renting a five-story building for a team of three — paying through the nose for features I'd never use, while the day-to-day stayed full of manual tasks.</p>
-          <p>So I built my own. <a href="https://tero.bot/" target="_blank" rel="noopener">Tero Bot</a> isn't a traditional "tailor-made" app; it runs on modular architecture under a <a href="https://x.com/gokulr/status/2051683243934826773" target="_blank" rel="noopener"><em>"Pod-of-One"</em></a> model — I operate solo, leveraged by AI and automations, building only the modules that solve real problems. No junk.</p>
+          <p>That same instinct had to run the business behind the houses. Operating four rentals end-to-end — climate, utilities, cleaning, maintenance — is mostly recurring logistics, and off-the-shelf property software is built for agencies with staff, not for one person who just wants the manual work to disappear.</p>
+          <p>So I built my own. <a href="https://tero.bot/" target="_blank" rel="noopener">Tero Bot</a> isn't a monolithic "tailor-made" app — it's a set of small, independent modules, each one earning its place by removing a specific recurring task. I add a module only once the manual version starts to hurt.</p>
           <p class="lead-in">Three core modules run the system:</p>
         </div>
       </div>
@@ -457,12 +491,12 @@
       <div class="col-body module">
         <h3>Automated Hospitality.</h3>
         <dl class="step-defs">
-          <dt>The challenge</dt>
-          <dd>A guest's check-in experience doesn't begin when they get the keys; it starts with the thermal comfort of the house when they walk in.</dd>
-          <dt>The module</dt>
-          <dd>An integrated temperature and humidity control system.</dd>
-          <dt>The philosophy</dt>
-          <dd>Sometimes the best User Interface isn't a glowing screen on a smartphone — it's the perfect physical climate the moment someone crosses the door.</dd>
+          <dt>The friction</dt>
+          <dd>A stay is judged in the first ten seconds, and a cold house loses the guest before they unpack — but handing them a thermostat app to fix it only trades one friction for another.</dd>
+          <dt>The decision</dt>
+          <dd>Climate is automated, not operated. Temperature and humidity are tracked per room and the house pre-conditions itself ahead of check-in; the dashboard exists for me to verify, never for the guest to touch.</dd>
+          <dt>The reasoning</dt>
+          <dd>I treated the absence of an interface as the feature. The primary interaction is simply walking into a home already at 22°C — the UI dissolves into the experience.</dd>
         </dl>
       </div>
 
@@ -481,12 +515,12 @@
       <div class="col-body module">
         <h3>Invisible Operations.</h3>
         <dl class="step-defs">
-          <dt>The challenge</dt>
-          <dd>Manually tracking energy costs and matching them against actual occupancy is a major administrative time-sink.</dd>
-          <dt>The module</dt>
-          <dd>An automated backend flow that intercepts email-forwarded utility bills, extracts the data, and automatically matches it against the complex's real energy usage.</dd>
-          <dt>The philosophy</dt>
-          <dd>Heavy bureaucratic tasks should be resolved by the backend. Fewer manual interfaces, more invisible integrations that protect margins.</dd>
+          <dt>The friction</dt>
+          <dd>Reconciling utility bills against occupancy is pure data entry. My designer instinct was to mock the whole thing up in Figma — forms, tables, upload states, empty states.</dd>
+          <dt>The decision</dt>
+          <dd>I cut those screens before building them. Forwarded bill emails are intercepted, parsed, and matched against real consumption in the backend — no form to fill, no upload, no interface to keep alive.</dd>
+          <dt>The reasoning</dt>
+          <dd>Every screen is a surface someone has to operate and I have to maintain. The cheapest interface is the one you never build; bureaucracy belongs in the backend, out of sight.</dd>
         </dl>
       </div>
 
@@ -505,12 +539,12 @@
       <div class="col-body module">
         <h3>Zero-Friction Team UI.</h3>
         <dl class="step-defs">
-          <dt>The challenge</dt>
-          <dd>Forcing maintenance and cleaning staff to download a new app, remember passwords, and learn a foreign system creates unnecessary resistance and errors.</dd>
-          <dt>The module</dt>
-          <dd>Issue report, task assignment, status tracking, and notifications operated entirely through WhatsApp.</dd>
-          <dt>The philosophy</dt>
-          <dd>The best interface is the one the user already knows. Instead of forcing people into a new system, I brought the system to them.</dd>
+          <dt>The friction</dt>
+          <dd>A custom staff app means downloads, passwords, and onboarding — friction that cleaning and maintenance crews quietly route around, falling back to phone calls and notes that get lost.</dd>
+          <dt>The decision</dt>
+          <dd>So I built no app. Issue reports, task assignment, status, and notifications all live inside WhatsApp — the one tool the team already opens dozens of times a day — rather than a new system built from scratch.</dd>
+          <dt>The reasoning</dt>
+          <dd>Adoption beats features. Meeting the team inside an interface they already trust erased the rollout entirely — the system was live the moment they sent their first message.</dd>
         </dl>
         <p class="kapso-note"><a href="https://tero.bot/" target="_blank" rel="noopener">Tero Bot</a> is built on <a href="https://kapso.ai/" target="_blank" rel="noopener">Kapso</a> — a WhatsApp orchestration layer that lets the team distribute tasks, file issues, and log supply intakes without leaving the chat.</p>
       </div>
@@ -532,18 +566,27 @@
       <div class="col-body">
         <div class="prose">
           <h2>Idea → ship in <em>one loop.</em></h2>
-          <p>The whole product runs on a tight three-step pipeline:</p>
-          <ul class="pipeline" aria-label="Build pipeline">
-            <li>Linear</li>
-            <li class="arrow">→</li>
-            <li>Claude Code</li>
-            <li class="arrow">→</li>
-            <li>Vercel</li>
-            <li class="arrow">→</li>
-            <li>🚀 Boom</li>
-          </ul>
-          <p style="margin-top: 22px;"><em>Linear</em> holds the backlog. Every request, bug, or idea opens an issue. <em>Claude Code</em> reads the issue, writes the patch, opens a commit referencing the issue, and pushes. <em>Vercel</em> deploys every push in under a minute — and auto-closes the Linear issue via the commit link.</p>
-          <p>What used to be a multi-person handoff — backlog grooming, dev work, code review, QA, deploy ticket — collapses into a single conversation. The cost per shipped change drops far enough that micro-iterations become the default, not the exception.</p>
+          <p>The whole product runs on a single loop — from idea to production with no handoff in between:</p>
+        </div>
+        <ol class="pipeline" aria-label="Build pipeline">
+          <li class="pipe-step">
+            <span class="pipe-num">01</span>
+            <span class="pipe-tool">Linear</span>
+            <span class="pipe-role">Every request, bug, or idea opens an issue — the single backlog.</span>
+          </li>
+          <li class="pipe-step">
+            <span class="pipe-num">02</span>
+            <span class="pipe-tool">Claude Code</span>
+            <span class="pipe-role">Reads the issue, writes the patch, and commits referencing it.</span>
+          </li>
+          <li class="pipe-step">
+            <span class="pipe-num">03</span>
+            <span class="pipe-tool">Vercel</span>
+            <span class="pipe-role">Deploys in under a minute — and auto-closes the issue via the commit.</span>
+          </li>
+        </ol>
+        <div class="prose">
+          <p>What used to be a multi-person handoff — backlog grooming, dev work, code review, QA, a deploy ticket — collapses into a single conversation. The cost per shipped change drops far enough that micro-iterations become the default, not the exception.</p>
         </div>
       </div>
 
@@ -552,7 +595,7 @@
       <div class="section-label"><span class="num">08</span> Output</div>
       <div class="col-body">
         <div class="prose">
-          <p>What "micro-iterations as the default" looks like — live from the repo:</p>
+          <p>Zero to production in 89 effective hours of work — the entire system designed, built, and shipped by one person, with AI handling the execution. The numbers, live from the repo:</p>
         </div>
         <figure class="output-video">
           <video autoplay muted loop playsinline preload="metadata">
