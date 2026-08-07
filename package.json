@@ -1,23 +1,11 @@
 {
-  "name": "primary",
+  "name": "wikichaves.com",
   "version": "1.0.0",
+  "private": true,
   "description": "My personal site — designer and musician. Static HTML, no build step, hosted on Vercel.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wikichaves/wikichaves.com.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wikichaves/wikichaves.com/issues"
-  },
-  "homepage": "https://github.com/wikichaves/wikichaves.com#readme",
-  "dependencies": {
-    "@vercel/speed-insights": "^2.0.0"
-  }
+  "license": "ISC"
 }

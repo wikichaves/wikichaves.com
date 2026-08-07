@@ -23,8 +23,9 @@
 <link rel="icon" type="image/svg+xml" href="/assets/wikichaves.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400;1,8..60,600&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=block" rel="stylesheet">
-<link rel="stylesheet" href="/shared.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400;1,8..60,600&amp;family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css?v=3">
+<link rel="stylesheet" href="/design/projects/case-study.css?v=1">
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
@@ -34,133 +35,6 @@
 </script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
 <style>
-  .page {
-    padding: 96px 0 48px;
-    display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    column-gap: 80px;
-    row-gap: 56px;
-    align-items: start;
-  }
-  .page .section-label { padding-top: 8px; }
-  .page .col-body { min-width: 0; max-width: 720px; }
-
-  /* title block */
-  .project-kicker {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 20px;
-  }
-  .project-kicker .sep { color: var(--ink-faint); margin: 0 10px; }
-  .project-kicker .role { color: var(--accent); }
-  .display {
-    font-size: clamp(44px, 5.8vw, 76px);
-    margin: 0 0 28px;
-  }
-  .project-lede {
-    font-family: var(--serif);
-    font-size: clamp(20px, 2vw, 24px);
-    line-height: 1.5;
-    color: var(--ink-dim);
-    margin: 0;
-    text-wrap: pretty;
-    max-width: 620px;
-  }
-  .project-lede em { color: var(--ink); font-style: italic; font-weight: 600; }
-
-  /* prose */
-  .prose { max-width: 640px; }
-  .prose h2 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: 32px;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
-    margin: 0 0 20px;
-    color: var(--ink);
-  }
-  .prose h2 em { font-style: italic; color: var(--accent); }
-  .prose p {
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--ink-dim);
-    margin: 0 0 18px;
-    text-wrap: pretty;
-  }
-  .prose p em { color: var(--ink); font-style: italic; font-weight: 600; }
-  .prose a {
-    color: var(--ink);
-    border-bottom: 1px solid var(--rule-2);
-    transition: border-color .25s, color .25s;
-  }
-  .prose a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-  /* steps */
-  .steps { counter-reset: step; margin: 8px 0 0; }
-  .step {
-    padding: 32px 0 36px;
-    border-top: 1px solid var(--rule);
-  }
-  .step:first-child { border-top: 0; padding-top: 0; }
-  .step-head {
-    display: flex;
-    align-items: baseline;
-    gap: 18px;
-    margin-bottom: 14px;
-  }
-  .step-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    min-width: 28px;
-  }
-  .step-title {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: 26px;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    margin: 0;
-    color: var(--ink);
-  }
-  .step p {
-    font-family: var(--serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink-dim);
-    margin: 0 0 18px;
-    text-wrap: pretty;
-    max-width: 620px;
-  }
-  .step p:last-of-type { margin-bottom: 22px; }
-
-  /* figures */
-  figure.shot {
-    margin: 4px 0 0;
-    padding: 0;
-  }
-  figure.shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 3px;
-    border: 1px solid var(--rule);
-    background: var(--bg-2);
-  }
-  figure.shot figcaption {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-top: 12px;
-  }
-
   /* before/after compare */
   figure.compare {
     margin: 4px 0 0;
@@ -197,150 +71,6 @@
     color: var(--ink-faint);
     margin-top: 4px;
   }
-
-  /* hero & closer full-width figures */
-  .figure-band {
-    grid-column: 1 / -1;
-    max-width: 100%;
-    margin: 0;
-  }
-  .figure-band img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 3px;
-    border: 1px solid var(--rule);
-  }
-  .figure-band figcaption {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-top: 14px;
-  }
-
-  /* quote */
-  .quote {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 1.55;
-    color: var(--ink);
-    border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 24px;
-    margin: 0;
-    max-width: 640px;
-    text-wrap: pretty;
-  }
-  .quote-attr {
-    display: block;
-    margin-top: 16px;
-    font-family: var(--mono);
-    font-size: 11px;
-    font-style: normal;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-  }
-
-  /* back */
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 40px;
-    transition: color .2s;
-  }
-  .back-link:hover { color: var(--accent); }
-
-  @media (max-width: 900px) {
-    .page {
-      grid-template-columns: 1fr;
-      column-gap: 0;
-      row-gap: 20px;
-      padding-top: 56px;
-    }
-    .page .section-label { padding-top: 0; margin-top: 16px; }
-    .page .section-label:first-child { margin-top: 0; }
-    .step-head { gap: 12px; }
-  }
-
-  /* ── lightbox ─────────────────────────────────────────── */
-  .lightbox {
-    position: fixed; inset: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 320ms cubic-bezier(.2,.7,.2,1);
-  }
-  .lightbox.open { opacity: 1; pointer-events: auto; }
-  .lightbox__backdrop {
-    position: absolute; inset: 0;
-    background: rgba(13,13,14,.94);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    cursor: zoom-out;
-  }
-  .lightbox__inner {
-    position: relative; z-index: 1;
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
-    max-width: 92vw;
-    transform: scale(.97);
-    transition: transform 360ms cubic-bezier(.2,.7,.2,1);
-  }
-  .lightbox.open .lightbox__inner { transform: scale(1); }
-  .lightbox__img {
-    max-width: 92vw; max-height: 80vh;
-    object-fit: contain; display: block;
-    box-shadow: 0 30px 80px rgba(0,0,0,.55);
-    background: var(--bg-2);
-    transition: opacity 220ms ease;
-  }
-  .lightbox.loading .lightbox__img { opacity: .35; }
-  .lightbox__cap {
-    font-family: var(--mono);
-    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--ink-dim);
-    text-align: center;
-  }
-  .lightbox__close, .lightbox__nav {
-    position: absolute; z-index: 2;
-    background: rgba(239,236,228,.08);
-    color: var(--ink);
-    border: 1px solid var(--rule-2);
-    width: 44px; height: 44px; padding: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-size: 22px; line-height: 1;
-    cursor: pointer; border-radius: 999px;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
-  }
-  .lightbox__close:hover, .lightbox__nav:hover {
-    background: var(--accent);
-    color: var(--accent-ink);
-    border-color: var(--accent);
-  }
-  .lightbox__close { top: 24px; right: 24px; }
-  .lightbox__nav { top: 50%; transform: translateY(-50%); }
-  .lightbox__prev { left: 24px; }
-  .lightbox__next { right: 24px; }
-  body.lb-open { overflow: hidden; }
-
-  @media (max-width: 768px) {
-    .lightbox__img { max-height: 72vh; }
-    .lightbox__nav { width: 40px; height: 40px; font-size: 20px; }
-    .lightbox__close { top: 14px; right: 14px; }
-    .lightbox__prev { left: 8px; }
-    .lightbox__next { right: 8px; }
-    .lightbox__cap { font-size: 10px; }
-  }
 </style>
 </head>
 <body>
@@ -375,7 +105,7 @@
         <picture>
           <source srcset="/design/projects/airbnb-pdp/photos/Airbnb-PDP-Hero.avif" type="image/avif">
           <source srcset="/design/projects/airbnb-pdp/photos/Airbnb-PDP-Hero.webp" type="image/webp">
-          <img src="/design/projects/airbnb-pdp/photos/Airbnb-PDP-Hero.jpg" alt="Airbnb Product Detail Page" loading="lazy">
+          <img src="/design/projects/airbnb-pdp/photos/Airbnb-PDP-Hero.jpg" alt="Airbnb Product Detail Page" fetchpriority="high" decoding="async" width="1600" height="1200">
         </picture>
         <figcaption>Design is never done</figcaption>
       </figure>
@@ -415,7 +145,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Description-Before.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Description-Before.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Description-Before.jpg" alt="PDP description section before redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Description-Before.jpg" alt="PDP description section before redesign" loading="lazy" width="1600" height="1192">
                 </picture>
               </div>
               <div class="side">
@@ -423,7 +153,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Description-After.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Description-After.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Description-After.jpg" alt="PDP description section after redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Description-After.jpg" alt="PDP description section after redesign" loading="lazy" width="1600" height="1192">
                 </picture>
               </div>
               <figcaption>Reducing redundancy</figcaption>
@@ -442,7 +172,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Sleeping-Before.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Sleeping-Before.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Sleeping-Before.jpg" alt="Sleeping arrangements before redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Sleeping-Before.jpg" alt="Sleeping arrangements before redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <div class="side">
@@ -450,7 +180,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Sleeping-After.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Sleeping-After.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Sleeping-After.jpg" alt="Sleeping arrangements after redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Sleeping-After.jpg" alt="Sleeping arrangements after redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <figcaption>Sleeping arrangements</figcaption>
@@ -469,7 +199,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Map-Before.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Map-Before.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Map-Before.jpg" alt="Map size before redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Map-Before.jpg" alt="Map size before redesign" loading="lazy" width="1600" height="1250">
                 </picture>
               </div>
               <div class="side">
@@ -477,7 +207,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Map-After.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Map-After.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Map-After.jpg" alt="Map size after redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Map-After.jpg" alt="Map size after redesign" loading="lazy" width="1600" height="1250">
                 </picture>
               </div>
               <figcaption>Map size</figcaption>
@@ -496,7 +226,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Book-Before.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Book-Before.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Book-Before.jpg" alt="Booking component before redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Book-Before.jpg" alt="Booking component before redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <div class="side">
@@ -504,7 +234,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Book-After.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Book-After.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Book-After.jpg" alt="Booking component after redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Book-After.jpg" alt="Booking component after redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <figcaption>Booking component</figcaption>
@@ -523,7 +253,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Share-Save-Before.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Share-Save-Before.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Share-Save-Before.jpg" alt="Share and save before redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Share-Save-Before.jpg" alt="Share and save before redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <div class="side">
@@ -531,7 +261,7 @@
                 <picture>
                   <source srcset="/design/projects/airbnb-pdp/photos/Share-Save-After.avif" type="image/avif">
                   <source srcset="/design/projects/airbnb-pdp/photos/Share-Save-After.webp" type="image/webp">
-                  <img src="/design/projects/airbnb-pdp/photos/Share-Save-After.jpg" alt="Share and save after redesign" loading="lazy">
+                  <img src="/design/projects/airbnb-pdp/photos/Share-Save-After.jpg" alt="Share and save after redesign" loading="lazy" width="1600" height="1000">
                 </picture>
               </div>
               <figcaption>Share &amp; save</figcaption>
@@ -554,7 +284,7 @@
         <picture>
           <source srcset="/design/projects/airbnb-pdp/photos/Airbnb-PDP-2017-vs-2018.avif" type="image/avif">
           <source srcset="/design/projects/airbnb-pdp/photos/Airbnb-PDP-2017-vs-2018.webp" type="image/webp">
-          <img src="/design/projects/airbnb-pdp/photos/Airbnb-PDP-2017-vs-2018.jpg" alt="Airbnb PDP 2017 vs 2018" loading="lazy">
+          <img src="/design/projects/airbnb-pdp/photos/Airbnb-PDP-2017-vs-2018.jpg" alt="Airbnb PDP 2017 vs 2018" loading="lazy" width="592" height="1600">
         </picture>
         <figcaption>Airbnb PDP — 2017 vs 2018</figcaption>
       </figure>
@@ -598,48 +328,7 @@
   })();
 </script>
 
-<script>
-  /* Lightbox — click any case-study image to expand. Keyboard (←/→/Esc) and touch swipe supported. */
-  (function () {
-    var imgs = Array.prototype.slice.call(document.querySelectorAll('.figure-band img, figure.compare img'));
-    var lb = document.getElementById('lightbox');
-    if (!imgs.length || !lb) return;
-    var lbImg = lb.querySelector('.lightbox__img');
-    var lbCap = lb.querySelector('.lightbox__cap');
-    var i = 0;
-    function srcOf(im) { return im.currentSrc || im.src; }
-    function capOf(im) { var f = im.closest('figure'); var c = f && f.querySelector('figcaption'); return c ? c.textContent.trim() : ''; }
-    function preload(idx) { var im = imgs[idx]; if (!im) return; var p = new Image(); p.src = srcOf(im); }
-    function paint() {
-      var im = imgs[i];
-      lb.classList.add('loading');
-      lbImg.src = srcOf(im);
-      lbImg.alt = im.alt || '';
-      lbCap.textContent = capOf(im);
-      preload((i + 1) % imgs.length);
-      preload((i - 1 + imgs.length) % imgs.length);
-    }
-    lbImg.addEventListener('load', function () { lb.classList.remove('loading'); });
-    lbImg.addEventListener('error', function () { lb.classList.remove('loading'); });
-    function open(idx) { i = idx; paint(); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lb-open'); }
-    function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lb-open'); }
-    function next() { i = (i + 1) % imgs.length; paint(); }
-    function prev() { i = (i - 1 + imgs.length) % imgs.length; paint(); }
-    imgs.forEach(function (im, idx) { im.style.cursor = 'zoom-in'; im.addEventListener('click', function () { open(idx); }); });
-    lb.querySelectorAll('[data-lb-close]').forEach(function (el) { el.addEventListener('click', close); });
-    lb.querySelector('[data-lb-prev]').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
-    lb.querySelector('[data-lb-next]').addEventListener('click', function (e) { e.stopPropagation(); next(); });
-    document.addEventListener('keydown', function (e) {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowLeft') prev();
-      else if (e.key === 'ArrowRight') next();
-    });
-    var touchX = null;
-    lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', function (e) { if (touchX === null) return; var dx = e.changedTouches[0].clientX - touchX; touchX = null; if (Math.abs(dx) > 50) (dx < 0 ? next() : prev()); }, { passive: true });
-  })();
-</script>
+<script defer src="/design/projects/lightbox.js?v=1"></script>
 
 </body>
 </html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wikichaves.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://wikichaves.com/design</loc><priority>0.9</priority></url>
+  <url><loc>https://wikichaves.com/music</loc><priority>0.9</priority></url>
+  <url><loc>https://wikichaves.com/design/projects</loc><priority>0.8</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/tero</loc><priority>0.7</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/netflix-design-system</loc><priority>0.7</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/airbnb-pdp</loc><priority>0.7</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/airbnb-cards</loc><priority>0.7</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/xapo</loc><priority>0.7</priority></url>
+  <url><loc>https://wikichaves.com/design/projects/lemon-wallet</loc><priority>0.7</priority></url>
+</urlset>
