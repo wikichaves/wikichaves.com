@@ -54,6 +54,20 @@ Give every `<img>` its intrinsic `width`/`height` so the browser reserves the bo
 before the file lands (no layout shift). The first figure on a page is the LCP
 element — it gets `fetchpriority="high"` and no `loading="lazy"`.
 
+## Audio
+
+`music/audio/` holds web previews, not masters — 128 kbps AAC in `.m4a`, which
+beats MP3 at the same bitrate and plays natively everywhere. The track list in
+`music/index.html` points at these paths directly; keep the filenames in sync.
+
+```bash
+afconvert -f m4af -d aac -b 128000 -q 127 -s 2 master.mp3 track.m4a
+```
+
+Channels and sample rate carry over from the source (the catalog is a mix of
+44.1 and 48 kHz). The 256 kbps MP3s these replaced are still in git history if
+a master is ever needed back.
+
 ## Local
 
 ```bash
