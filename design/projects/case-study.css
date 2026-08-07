@@ -244,8 +244,15 @@ figure.shot figcaption {
   transition: transform 360ms cubic-bezier(.2,.7,.2,1);
 }
 .lightbox.open .lightbox__inner { transform: scale(1); }
+/* lightbox.js swaps in a clone of the figure's <picture> so the browser picks
+   the format; display:contents keeps the <img> as the direct flex item. */
+.lightbox__pic { display: contents; }
 .lightbox__img {
   max-width: 92vw; max-height: 80vh;
+  /* the clone carries the figure's width/height attributes; let the box size
+     itself from the image again (the attributes still supply aspect-ratio,
+     so nothing jumps while it loads) */
+  width: auto; height: auto;
   object-fit: contain; display: block;
   box-shadow: 0 30px 80px rgba(0,0,0,.55);
   background: var(--bg-2);
