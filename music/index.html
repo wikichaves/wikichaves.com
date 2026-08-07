@@ -1048,6 +1048,17 @@ const LISTEN = [
 ];
 
 /* ------------- RENDER ------------- */
+
+/* Covers ship as .avif/.webp/.jpg siblings, but they are painted as CSS
+   backgrounds, so <picture> negotiation is not available. image-set() is the
+   background equivalent; the plain url() declared before it is the fallback
+   for engines that cannot parse it, since an unparseable declaration is
+   dropped and the previous one stands. */
+const coverSet = (jpg) => {
+  const base = jpg.replace(/\.jpg$/, '');
+  return `image-set(url('${base}.avif') type('image/avif'), url('${base}.webp') type('image/webp'), url('${jpg}') type('image/jpeg'))`;
+};
+
 const timeline = document.getElementById('timeline');
 const RENDERED = [...RELEASES];
 RENDERED.forEach((r, i) => {
@@ -1062,7 +1073,7 @@ RENDERED.forEach((r, i) => {
         ${r.year}
         <span class="month">${r.month}</span>
       </div>
-      <div class="release-art"${r.cover ? ` style="background-image:url('${r.cover}');background-size:cover;background-position:center;"` : ''}>${r.cover ? '' : '<span>Album art</span>'}</div>
+      <div class="release-art"${r.cover ? ` style="background-image:url('${r.cover}');background-image:${coverSet(r.cover)};background-size:cover;background-position:center;"` : ''}>${r.cover ? '' : '<span>Album art</span>'}</div>
     </div>
     <div class="release-body">
       <h3 class="release-title">${r.title}</h3>
@@ -1190,6 +1201,8 @@ function openPlayer(idx, trackIdx=null, auto=true) {
   playerTitle.textContent = activeTrackTitle();
   if (r.cover) {
     playerArt.style.backgroundImage = `url('${r.cover}')`;
+    // no-op where image-set() is unsupported, leaving the url() above in place
+    playerArt.style.backgroundImage = coverSet(r.cover);
     playerArt.style.backgroundSize = 'cover';
     playerArt.style.backgroundPosition = 'center';
     playerArt.innerHTML = '';
