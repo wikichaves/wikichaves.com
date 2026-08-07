@@ -12,7 +12,7 @@ design/            · /design — design overview
   projects/        · /design/projects — index + 6 case studies
     case-study.css · layout shared by all 6 case studies
     lightbox.js    · shared click-to-expand gallery
-music/             · /music — record catalog + audio
+music/             · /music — record catalog + audio (player + timeline inline)
 robots.txt         · + sitemap.xml
 vercel.json        · redirects + cache + security headers
 ```
@@ -28,6 +28,11 @@ click-to-expand **lightbox** (keyboard + swipe) lives in `lightbox.js`; Tero add
 
 Bump the `?v=` on the `shared.css` / `case-study.css` / `lightbox.js` links when
 you edit them — that query is the only cache-buster.
+
+Every page loads `shared.css` for the nav, footer, type scale and tokens, then
+overrides what it needs in its own inline `<style>`. `/music` is the one page
+that owns most of its layout (the timeline, the tracklists, the mini player) —
+it still takes the chrome from `shared.css` and keeps only its own in the page.
 
 ## Images
 
